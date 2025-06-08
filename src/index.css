@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  /* Modern oklch() color palette - calm theme */
+  --color-primary-50: oklch(98% 0.01 260);  /* Snow white */
+  --color-primary-100: oklch(95% 0.02 255); /* Ice blue */
+  --color-primary-200: oklch(90% 0.04 245); /* Morning mist */
+  
+  --color-accent-300: oklch(82% 0.08 235);  /* Soft aqua */
+  --color-accent-400: oklch(75% 0.12 230);  /* Calm ocean */
+  --color-accent-500: oklch(68% 0.15 225);  /* Deep lagoon */
+  
+  --color-gray-100: oklch(94% 0.01 260);    /* Silver */
+  --color-gray-200: oklch(88% 0.02 260);    /* Pebble */
+  --color-gray-300: oklch(80% 0.03 260);    /* Stone */
+  
+  /* Semantic text colors */
+  --color-text-primary: oklch(25% 0.02 260);
+  --color-text-secondary: oklch(45% 0.03 260);
+  
+  /* Extended spacing for luxury feel */
+  --spacing-18: 4.5rem;
+  --spacing-28: 7rem;
+}
+
+@layer base {
+  :root {
+
+  }
+  
+  body {
+    @apply bg-primary-50 text-text-primary font-sans antialiased;
+    background-image: radial-gradient(var(--color-primary-100) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+  
+  h1, h2, h3 {
+    @apply font-serif tracking-tight;
+  }
+}
+
+@layer components {
+  .hotel-card {
+    @apply bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-xl p-8;
+  }
+    .hotel-card:hover {
+        @apply shadow-sm;
+    }
+  
+  .btn-primary {
+    @apply bg-gradient-to-b from-accent-400 to-accent-500 text-white px-8 py-3 rounded-lg font-medium shadow-sm hover:shadow-md transition-all;
+  }
+    .btn-primary:hover {
+        @apply bg-accent-500 shadow-lg;
+    }
+  
+  .divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-gray-200/50 to-transparent my-8;
+  }
+}
