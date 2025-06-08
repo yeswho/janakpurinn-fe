@@ -351,7 +351,6 @@ const SuccessView = ({ onClose }: { onClose: () => void }) => (
 // Extracted Room Summary Component
 const RoomSummary = ({ 
   selectedRooms, 
-  roomsData, 
   calculateTotal,
   getRoomDetails
 }: {

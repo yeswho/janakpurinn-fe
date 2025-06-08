@@ -1,10 +1,8 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Pagination, Navigation, Autoplay } from 'swiper/modules';
-import { useRooms } from '../../../hooks/useRooms';
-import { motion } from 'framer-motion';
+import 'swiper/css/pagination';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function Hero() {
     const hotelImages = [

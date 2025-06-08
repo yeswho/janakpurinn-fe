@@ -1,4 +1,3 @@
-import { useState } from 'react';
 
 const Policies = () => {
   const policies = {

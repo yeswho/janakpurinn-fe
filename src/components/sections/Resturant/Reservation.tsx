@@ -1,7 +1,6 @@
+import { CheckCircle, Clock, Phone, Utensils } from 'lucide-react';
 import { useState } from 'react';
-import { Clock, Phone, CheckCircle, Utensils } from 'lucide-react';
 import RestaurantReservation from '../Hotel/ResturantReservation';
-import type { on } from 'video.js/dist/types/utils/events';
 
 const Reservation = () => {
   const [isHovered, setIsHovered] = useState(false);
