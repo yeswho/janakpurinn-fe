@@ -3,16 +3,13 @@ import { motion } from 'framer-motion';
 import { useAbout } from '../../../hooks/useAbout';
 
 const AboutUs: React.FC = () => {
-
   const { data: aboutData, isLoading, error } = useAbout();
 
   const container = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+      transition: { staggerChildren: 0.1 }
     }
   };
 
@@ -48,20 +45,11 @@ const AboutUs: React.FC = () => {
   if (error) {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200 p-4">
-        <motion.div
-          className="hotel-card text-center max-w-md"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
+        <motion.div className="hotel-card text-center max-w-md" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <div className="text-red-500/80">
             <h2 className="text-2xl font-serif font-semibold mb-4 text-text-primary">Unable to Load Content</h2>
             <p className="mb-6 text-text-secondary">{(error as Error).message || 'Please try again later.'}</p>
-            <button
-              onClick={() => window.location.reload()}
-              className="btn-primary"
-            >
-              Try Again
-            </button>
+            <button onClick={() => window.location.reload()} className="btn-primary">Try Again</button>
           </div>
         </motion.div>
       </div>
@@ -75,62 +63,57 @@ const AboutUs: React.FC = () => {
       transition={{ duration: 0.8 }}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
     >
+      {/* Heading */}
       <motion.div
+        className="text-center mb-16 sm:mb-20"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-20"
       >
         <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl font-serif font-light text-text-primary mb-8 tracking-tight leading-tight"
+          className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-text-primary mb-6 tracking-tight"
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           {aboutData?.title}
         </motion.h1>
-        <p className="text-lg text-text-secondary max-w-3xl mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <h1 className="text-xl md:text-2xl font-serif font-medium text-text-primary">
-              {aboutData?.subtitle}
-            </h1>
-            <div className="w-24 h-1 bg-accent-400 mx-auto mt-6"></div>
-          </div>
-
-        </p>
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-lg sm:text-xl font-serif font-medium text-text-primary">
+            {aboutData?.subtitle}
+          </h2>
+          <div className="w-16 sm:w-24 h-1 bg-accent-400 mx-auto mt-4 sm:mt-6"></div>
+        </div>
       </motion.div>
 
+      {/* Sections */}
       <motion.div
         variants={container}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
-        className="space-y-28"
+        className="space-y-20"
       >
         {aboutData?.sections.map((section, index) => (
           <motion.div
             key={section.title}
             variants={item}
-            className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`}
+            className={`flex flex-col-reverse ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+              } items-center gap-10 sm:gap-12`}
           >
-            <div className="md:w-1/2">
-              <motion.div
-                whileHover="hover"
-                className="hotel-card p-0 overflow-hidden"
-              >
+            <div className="w-full md:w-1/2">
+              <motion.div whileHover="hover" className="hotel-card p-0 overflow-hidden rounded-lg shadow-md">
                 <motion.img
                   src={section.image}
                   alt={section.title}
-                  className="w-full h-80 md:h-96 object-cover"
-                  variants={{
-                    hover: imageHover
-                  }}
+                  className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover rounded-md transition-all"
+                  variants={{ hover: imageHover }}
                 />
               </motion.div>
             </div>
-            <div className="md:w-1/2">
+            <div className="w-full md:w-1/2 px-2 sm:px-0">
               <motion.h2
-                className="text-2xl font-serif font-semibold text-text-primary mb-6"
+                className="text-xl sm:text-2xl font-serif font-semibold text-text-primary mb-4 sm:mb-6"
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 viewport={{ once: true }}
@@ -139,7 +122,7 @@ const AboutUs: React.FC = () => {
                 {section.title}
               </motion.h2>
               <motion.p
-                className="text-md text-text-secondary leading-relaxed"
+                className="text-sm sm:text-base text-text-secondary leading-relaxed"
                 whileInView={{ opacity: 1 }}
                 initial={{ opacity: 0 }}
                 viewport={{ once: true }}
@@ -152,36 +135,35 @@ const AboutUs: React.FC = () => {
         ))}
       </motion.div>
 
+      {/* Team Section */}
       <motion.div
-        className="mt-28"
+        className="mt-24 sm:mt-28"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <motion.h2
-            className="text-3xl font-serif font-semibold text-text-primary mb-4"
+            className="text-2xl sm:text-3xl font-serif font-semibold text-text-primary mb-4"
+            initial={{ scale: 0.95 }}
             whileInView={{ scale: 1 }}
-            initial={{ scale: 0.9 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
             Our Team
           </motion.h2>
           <motion.p
-            className="text-text-secondary max-w-2xl mx-auto"
-            whileInView={{ opacity: 1, y: 0 }}
+            className="text-sm sm:text-base text-text-secondary max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
-            viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Meet the passionate individuals who make Janakpur Inn's vision a reality.
+            Meet the passionate individuals who make Janakpur Inn’s vision a reality.
           </motion.p>
         </div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-4 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -190,60 +172,47 @@ const AboutUs: React.FC = () => {
           {aboutData?.team.map((member) => (
             <motion.div
               key={member.name}
-              className="hotel-card group"
+              className="hotel-card group p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
               variants={item}
               whileHover={{ y: -5 }}
             >
-              <motion.div
-                className="overflow-hidden rounded-t-lg mb-6"
-                whileHover="hover"
-              >
+              <motion.div className="overflow-hidden rounded-t-lg mb-4" whileHover="hover">
                 <motion.img
                   src={member.image}
                   alt={member.name}
-                  className="w-full h-64 object-cover"
-                  variants={{
-                    hover: imageHover
-                  }}
+                  className="w-full h-56 sm:h-64 object-cover rounded-md"
+                  variants={{ hover: imageHover }}
                 />
               </motion.div>
-              <h3 className="text-xl font-serif font-semibold text-text-primary">
-                {member.name}
-              </h3>
-              <p className="text-accent-500 font-medium mb-3">
-                {member.position}
-              </p>
-              <p className="text-text-secondary">
-                {member.bio}
-              </p>
+              <h3 className="text-lg sm:text-xl font-serif font-semibold text-text-primary">{member.name}</h3>
+              <p className="text-accent-500 font-medium text-sm sm:text-base mb-2">{member.position}</p>
+              <p className="text-xs sm:text-sm text-text-secondary">{member.bio}</p>
             </motion.div>
           ))}
         </motion.div>
       </motion.div>
 
-      {/* Closing Section */}
+      {/* Footer/Closing */}
       <motion.div
-        className="mt-28 text-center"
+        className="mt-24 sm:mt-28 text-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="divider" />
+        <div className="divider mx-auto w-24 h-1 bg-accent-400 mb-8"></div>
         <motion.h3
-          className="text-2xl font-serif font-medium text-text-primary mb-8"
-          whileInView={{ opacity: 1, y: 0 }}
+          className="text-xl sm:text-2xl font-serif font-medium text-text-primary mb-4"
           initial={{ opacity: 0, y: 20 }}
-          viewport={{ once: true }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           We await you
         </motion.h3>
         <motion.p
-          className="text-text-secondary max-w-3xl mx-auto"
-          whileInView={{ opacity: 1 }}
+          className="text-sm sm:text-base text-text-secondary max-w-3xl mx-auto"
           initial={{ opacity: 0 }}
-          viewport={{ once: true }}
+          whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           Janakpur Inn Hotel awaits you to offer its warm and friendly hospitality. If your choice is comfort and service at a reasonable price, come and let us show you our care for your simple and most extravagant desires.
