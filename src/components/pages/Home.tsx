@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import video from '../../assets/video/janakpurinn.mp4'
 import VideoPlayer from '../common/VideoPlayer'
 import Amenities from '../sections/Hotel/Amenities'
 import GoogleReviewsWidget from '../sections/Hotel/GoogleReview'
@@ -14,10 +13,8 @@ export default function Home() {
       exit={{ opacity: 0 }}
     >
      <VideoPlayer
-          src={video}
-          poster=""
-          className="h-full w-full opacity-90"
-        />
+        poster=""
+        className="h-full w-full opacity-90" embedId={'hdfmg7 79g0gh'}  />
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
