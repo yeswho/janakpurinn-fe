@@ -1,11 +1,10 @@
 import { motion } from 'framer-motion'
+import video from '../../assets/video/janakpurinn.mp4'
+import VideoPlayer from '../common/VideoPlayer'
 import Amenities from '../sections/Hotel/Amenities'
 import GoogleReviewsWidget from '../sections/Hotel/GoogleReview'
-import Hero from '../sections/Hotel/Hero'
 import LookAround from '../sections/Hotel/LookAround'
 import FindUs from '../sections/Hotel/ReachUs'
-import VideoPlayer from '../common/VideoPlayer'
-import video from '../../assets/video/janakpurinn.mp4';
 
 export default function Home() {
   return (

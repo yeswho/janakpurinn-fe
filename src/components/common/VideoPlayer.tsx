@@ -1,5 +1,5 @@
+import { ArrowRight, Calendar, Car, Mail, MapPin, Phone, Projector, Utensils, Wifi } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Star, MapPin, Phone, Mail, Wifi, Car, Coffee, Utensils, Award, Users, Calendar, ArrowRight, Projector } from 'lucide-react';
 
 interface VideoPlayerProps {
   src: string;
@@ -16,17 +16,13 @@ const VideoPlayer = ({
 }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [error, setError] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [currentFeature, setCurrentFeature] = useState(0);
 
   useEffect(() => {
     const video = videoRef.current;
     if (video && !error) {
-      video.addEventListener('loadeddata', () => setIsLoaded(true));
       video.addEventListener('error', () => setError(true));
 
       return () => {
-        video.removeEventListener('loadeddata', () => setIsLoaded(true));
         video.removeEventListener('error', () => setError(true));
       };
     }
