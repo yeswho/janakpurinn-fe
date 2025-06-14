@@ -15,7 +15,7 @@ const VideoPlayer = ({
   className = '',
 }: VideoPlayerProps) => {
   const [error, setError] = useState(false);
-  
+
   // Split the embedId into desktop and mobile IDs
   const [desktopId, mobileId] = embedId.split(' ');
 
@@ -50,6 +50,8 @@ const VideoPlayer = ({
               frameBorder="0"
               allow="autoplay; fullscreen"
               allowFullScreen
+              webkit-playsinline
+              x-webkit-airplay="allow"
               onError={() => setError(true)}
             />
           </div>
