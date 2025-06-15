@@ -4,39 +4,57 @@ import { useMediaQuery } from 'react-responsive';
 const hotelImages = [
     {
         id: 1,
-        src: '/images/hotel/hotel-1.jpg',
-        alt: 'Luxury hotel lobby with elegant decor',
-        caption: 'Grand Lobby'
+        src: 'https://i.ibb.co/cK96fXY4/Hotel.jpg',
+        alt: 'Hotel entrance with elegant decor',
+        caption: 'Hotel Entrance'
     },
     {
         id: 2,
-        src: '/images/hotel/hotel-2.jpg',
-        alt: 'Swimming pool with panoramic views',
-        caption: 'Infinity Pool'
+        src: 'https://i.ibb.co/DHQtzZB4/ArjunDai.jpg',
+        alt: 'Hotel reception area with friendly staff',
+        caption: 'Hotel Reception'
     },
     {
         id: 3,
-        src: '/images/hotel/hotel-3.jpg',
-        alt: 'Spa relaxation area',
-        caption: 'Wellness Spa'
+        src: 'https://i.ibb.co/d03y7bqp/Hotel-Full-Night.jpg',
+        alt: 'Hotel view at night with lights',
+        caption: 'Hotel at Night'
     },
     {
         id: 4,
-        src: '/images/hotel/hotel-4.jpg',
-        alt: 'Conference room with modern facilities',
-        caption: 'Business Center'
+        src: 'https://i.ibb.co/rRBmh1w8/outside-4.jpg',
+        alt: 'Mahadev Statue in the hotel garden',
+        caption: 'Mahadev Statue'
     },
     {
         id: 5,
-        src: '/images/hotel/hotel-5.jpg',
-        alt: 'Beautiful garden landscape',
-        caption: 'Landscaped Gardens'
+        src: 'https://i.ibb.co/G4qt0ZmR/Hall.jpg',
+        alt: 'Small conference hall with seating',
+        caption: 'Conference Hall'
     },
     {
         id: 6,
-        src: '/images/hotel/hotel-6.jpg',
-        alt: 'Rooftop bar with city view',
-        caption: 'Sky Lounge'
+        src: 'https://i.ibb.co/hJRwknzR/Apt-Facilities.jpg',
+        alt: 'Apartment facilities with modern amenities',
+        caption: 'Apartment Facilities'
+    },
+    {
+        id: 7,
+        src: 'https://i.ibb.co/Dn4Gt8P/hotel-Fame.jpg',
+        alt: 'Hotel manager with a welcoming smile',
+        caption: 'Hotel Manager',
+    },
+    {
+        id: 8,
+        src: 'https://i.ibb.co/0VnxxdGV/mithila1.jpg',
+        alt: 'Mithila art displayed in the hotel',
+        caption: 'Mithila Art Display',
+    },
+    {
+        id: 9,
+        src: 'https://i.ibb.co/gbxzmZVj/Washroom.jpg',
+        alt: 'Clean hotel washroom in standard room with hot water',
+        caption: 'Standard Room Washroom',
     }
 ];
 

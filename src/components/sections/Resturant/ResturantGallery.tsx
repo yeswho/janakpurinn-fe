@@ -4,33 +4,33 @@ import { useMediaQuery } from 'react-responsive';
 const restaurantImages = [
   {
     id: 1,
-    src: '/images/restaurant/restaurant-1.jpg',
-    alt: 'Elegant dining area with ambient lighting',
-    caption: 'Main Dining Hall'
+    src: 'https://i.ibb.co/bgKt6JLv/Resturant.jpg',
+    alt: 'Resturant with good ambiance and seating',
+    caption: 'Restaurant Ambiance'
   },
   {
     id: 2,
-    src: '/images/restaurant/restaurant-2.jpg',
-    alt: 'Outdoor seating with garden view',
-    caption: 'Garden Terrace'
+    src: 'https://i.ibb.co/DfNvV6y8/Resturant3.jpg',
+    alt: 'Bar area with a variety of drinks',
+    caption: 'Bar Area'
   },
   {
     id: 3,
-    src: '/images/restaurant/restaurant-3.jpg',
-    alt: 'Chef preparing signature dishes',
-    caption: 'Chef\'s Kitchen'
+    src: 'https://i.ibb.co/WN4Y2955/Restuarnt2.jpg',
+    alt: 'Resturant area',
+    caption: 'Restuarnt Area with Bar'
   },
   {
     id: 4,
-    src: '/images/restaurant/restaurant-4.jpg',
-    alt: 'Private dining room for special occasions',
-    caption: 'Private Dining'
+    src: 'https://i.ibb.co/KchhyY6X/Resturant-outside2.jpg',
+    alt: 'Outdoor dining area with seating',
+    caption: 'Outdoor Dining Area'
   },
   {
     id: 5,
-    src: '/images/restaurant/restaurant-5.jpg',
-    alt: 'Bar area with premium selection',
-    caption: 'Cocktail Lounge'
+    src: 'https://i.ibb.co/Z1vbkgWV/Resturant-Outside.jpg',
+    alt: 'Outside Dining Area',
+    caption: 'Outside Dining Area'
   }
 ];
 

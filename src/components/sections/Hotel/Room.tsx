@@ -258,30 +258,33 @@ const Rooms: React.FC = () => {
             className="bg-white rounded-lg shadow-md overflow-hidden"
           >
             <div className="flex flex-col md:flex-row">
-              <div className="md:w-1/2 h-64 md:h-auto">
-                <Swiper
-                  modules={[Pagination]}
-                  pagination={{ clickable: true }}
-                  className="h-full"
-                >
-                  <SwiperSlide>
-                    <img
-                      src={room.images.main}
-                      alt={room.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </SwiperSlide>
-                  {room.images.gallery.map((img, index) => (
-                    <SwiperSlide key={index}>
+              <div className="md:w-1/2 w-full">
+                <div className="relative w-full h-64 sm:h-80 md:h-[420px] overflow-hidden">
+                  <Swiper
+                    modules={[Pagination]}
+                    pagination={{ clickable: true }}
+                    className="h-full w-full"
+                  >
+                    <SwiperSlide>
                       <img
-                        src={img}
-                        alt={`${room.title} ${index + 1}`}
+                        src={room.images.main}
+                        alt={room.title}
                         className="w-full h-full object-cover"
                       />
                     </SwiperSlide>
-                  ))}
-                </Swiper>
+                    {room.images.gallery.map((img, index) => (
+                      <SwiperSlide key={index}>
+                        <img
+                          src={img}
+                          alt={`${room.title} ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
               </div>
+
               <div className="md:w-1/2 p-6">
                 <div className="flex justify-between items-start mb-2">
                   <h2 className="text-xl font-serif font-semibold text-gray-800">
@@ -319,19 +322,18 @@ const Rooms: React.FC = () => {
                       <span className="text-text-secondary text-sm font-sans"> /night</span>
                     </p>
                   </div>
-                    <motion.button
+                  <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setSelectedRoom(room)}
-                    className={`btn-primary text-white text-sm px-4 py-2 rounded ${
-                      room.availableRooms <= 0
+                    className={`btn-primary text-white text-sm px-4 py-2 rounded ${room.availableRooms <= 0
                       ? 'cursor-not-allowed'
                       : 'hover:bg-blue-700'
-                    }`}
+                      }`}
                     disabled={room.availableRooms <= 0}
-                    >
+                  >
                     {room.availableRooms <= 0 ? 'Sold Out' : 'Select Room'}
-                    </motion.button>
+                  </motion.button>
                 </div>
               </div>
             </div>
