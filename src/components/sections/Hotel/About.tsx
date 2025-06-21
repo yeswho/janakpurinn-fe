@@ -61,28 +61,28 @@ const AboutUs: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="max-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"
     >
       {/* Heading */}
       <motion.div
-        className="text-center mb-16 sm:mb-20"
+        className="text-center mb-12 sm:mb-20"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         <motion.h1
-          className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-text-primary mb-6 tracking-tight"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light text-text-primary mb-4 sm:mb-6 tracking-tight"
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           {aboutData?.title}
         </motion.h1>
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-lg sm:text-xl font-serif font-medium text-text-primary">
+        <div className="text-center mb-6 sm:mb-12">
+          <h2 className="text-base sm:text-lg md:text-xl font-serif font-medium text-text-primary">
             {aboutData?.subtitle}
           </h2>
-          <div className="w-16 sm:w-24 h-1 bg-accent-400 mx-auto mt-4 sm:mt-6"></div>
+          <div className="w-16 sm:w-24 h-1 bg-accent-400 mx-auto mt-3 sm:mt-6"></div>
         </div>
       </motion.div>
 
@@ -91,29 +91,28 @@ const AboutUs: React.FC = () => {
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
-        className="w-7xl mx-auto space-y-20"
+        viewport={{ once: true, margin: "-50px" }}
+        className="w-full mx-auto space-y-12 sm:space-y-20"
       >
         {aboutData?.sections.map((section, index) => (
           <motion.div
             key={section.title}
             variants={item}
-            className={`flex flex-col-reverse ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-              } items-center gap-10 sm:gap-12`}
+            className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-6 sm:gap-8 md:gap-10`}
           >
             <div className="w-full md:w-1/2">
               <motion.div whileHover="hover" className="hotel-card p-0 overflow-hidden rounded-lg shadow-md">
                 <motion.img
                   src={section.image}
                   alt={section.title}
-                  className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover rounded-md transition-all"
+                  className="w-full h-48 sm:h-64 md:h-72 lg:h-80 xl:h-96 object-cover rounded-md transition-all"
                   variants={{ hover: imageHover }}
                 />
               </motion.div>
             </div>
-            <div className="w-full md:w-1/2 px-2 sm:px-0">
+            <div className="w-full md:w-1/2 px-0">
               <motion.h2
-                className="text-xl sm:text-2xl font-serif font-semibold text-text-primary mb-4 sm:mb-6"
+                className="text-lg sm:text-xl md:text-2xl font-serif font-semibold text-text-primary mb-3 sm:mb-4 md:mb-6"
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 viewport={{ once: true }}
@@ -122,7 +121,7 @@ const AboutUs: React.FC = () => {
                 {section.title}
               </motion.h2>
               <motion.p
-                className="text-sm sm:text-base text-text-secondary leading-relaxed"
+                className="text-xs sm:text-sm md:text-base text-text-secondary leading-relaxed"
                 whileInView={{ opacity: 1 }}
                 initial={{ opacity: 0 }}
                 viewport={{ once: true }}
@@ -137,15 +136,15 @@ const AboutUs: React.FC = () => {
 
       {/* Team Section */}
       <motion.div
-        className="mt-24 sm:mt-28"
+        className="mt-16 sm:mt-20 md:mt-24 lg:mt-28"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <motion.h2
-            className="text-2xl sm:text-3xl font-serif font-semibold text-text-primary mb-4"
+            className="text-xl sm:text-2xl md:text-3xl font-serif font-semibold text-text-primary mb-3 sm:mb-4"
             initial={{ scale: 0.95 }}
             whileInView={{ scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -153,17 +152,17 @@ const AboutUs: React.FC = () => {
             Our Team
           </motion.h2>
           <motion.p
-            className="text-sm sm:text-base text-text-secondary max-w-2xl mx-auto"
+            className="text-xs sm:text-sm md:text-base text-text-secondary max-w-2xl mx-auto px-2 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Meet the passionate individuals who make Janakpur Inn’s vision a reality.
+            Meet the passionate individuals who make Janakpur Inn's vision a reality.
           </motion.p>
         </div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -172,21 +171,21 @@ const AboutUs: React.FC = () => {
           {aboutData?.team.map((member) => (
             <motion.div
               key={member.name}
-              className="hotel-card group p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+              className="hotel-card group p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
               variants={item}
               whileHover={{ y: -5 }}
             >
-              <motion.div className="overflow-hidden rounded-t-lg mb-4" whileHover="hover">
+              <motion.div className="overflow-hidden rounded-t-lg mb-3 sm:mb-4" whileHover="hover">
                 <motion.img
                   src={member.image}
                   alt={member.name}
-                  className="w-full h-56 sm:h-64 object-cover rounded-md"
+                  className="w-full h-48 sm:h-56 md:h-64 object-cover rounded-md"
                   variants={{ hover: imageHover }}
                 />
               </motion.div>
-              <h3 className="text-lg sm:text-xl font-serif font-semibold text-text-primary">{member.name}</h3>
-              <p className="text-accent-500 font-medium text-sm sm:text-base mb-2">{member.position}</p>
-              <p className="text-xs sm:text-sm text-text-secondary">{member.bio}</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-serif font-semibold text-text-primary">{member.name}</h3>
+              <p className="text-accent-500 font-medium text-xs sm:text-sm md:text-base mb-1 sm:mb-2">{member.position}</p>
+              <p className="text-xs sm:text-xs md:text-sm text-text-secondary">{member.bio}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -194,15 +193,15 @@ const AboutUs: React.FC = () => {
 
       {/* Footer/Closing */}
       <motion.div
-        className="mt-24 sm:mt-28 text-center"
+        className="mt-16 sm:mt-20 md:mt-24 text-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="divider mx-auto w-24 h-1 bg-accent-400 mb-8"></div>
+        <div className="divider mx-auto w-16 sm:w-24 h-1 bg-accent-400 mb-6 sm:mb-8"></div>
         <motion.h3
-          className="text-xl sm:text-2xl font-serif font-medium text-text-primary mb-4"
+          className="text-lg sm:text-xl md:text-2xl font-serif font-medium text-text-primary mb-3 sm:mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -210,7 +209,7 @@ const AboutUs: React.FC = () => {
           We await you
         </motion.h3>
         <motion.p
-          className="text-sm sm:text-base text-text-secondary max-w-3xl mx-auto"
+          className="text-xs sm:text-sm md:text-base text-text-secondary max-w-3xl mx-auto px-2 sm:px-0"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
