@@ -61,7 +61,7 @@ const AboutUs: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
+      className="max-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
     >
       {/* Heading */}
       <motion.div
@@ -92,7 +92,7 @@ const AboutUs: React.FC = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
-        className="space-y-20"
+        className="w-7xl mx-auto space-y-20"
       >
         {aboutData?.sections.map((section, index) => (
           <motion.div
@@ -163,7 +163,7 @@ const AboutUs: React.FC = () => {
         </div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
           variants={container}
           initial="hidden"
           whileInView="show"

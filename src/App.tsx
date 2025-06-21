@@ -1,6 +1,9 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 
 import MainLayout from './components/layouts/MainLayout'
+import AdminLayout from './components/layouts/AdminLayout';
+import LoginPage from './components/common/AdminLogin';
+
 import Room from './components/sections/Hotel/Room'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
@@ -13,7 +16,6 @@ import Contact from './components/pages/Contact'
 import Booking from './components/sections/Hotel/Booking'
 import PoliciesPage from './components/pages/Policies'
 import Admin from './components/pages/Admin'
-
 
 export default function App() {
   const location = useLocation()
@@ -32,11 +34,10 @@ export default function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/policies" element={<PoliciesPage />} />
-        <Route path="/admin" element={<Admin />} />
-
-        
-        {/* 404 Page */}
-        {/* <Route path="*" element={<NotFound />} /> */}
+      </Route>
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route path="login" element={<LoginPage />} />
+        <Route path="dashboard" element={<Admin />} />
       </Route>
     </Routes>
   )

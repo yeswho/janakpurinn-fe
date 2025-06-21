@@ -9,14 +9,13 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer = ({
-  embedId = "hdfmg7", // Default to desktop ID if only one is provided
+  embedId = "hdfmg7", 
   poster,
   fallbackImage = "",
   className = '',
 }: VideoPlayerProps) => {
   const [error, setError] = useState(false);
 
-  // Split the embedId into desktop and mobile IDs
   const [desktopId, mobileId] = embedId.split(' ');
 
   return (
@@ -29,7 +28,6 @@ const VideoPlayer = ({
         />
       ) : (
         <>
-          {/* Mobile iframe - hidden on desktop */}
           <div className="absolute inset-0 w-full h-full overflow-hidden md:hidden">
             <iframe
               src={`https://streamable.com/e/${mobileId || desktopId}?autoplay=1&loop=1&muted=1`}
@@ -41,7 +39,6 @@ const VideoPlayer = ({
               onError={() => setError(true)}
             />
           </div>
-          {/* Desktop iframe - hidden on mobile */}
           <div className="absolute inset-0 w-full h-full overflow-hidden hidden md:block">
             <iframe
               src={`https://streamable.com/e/${desktopId}?autoplay=1&loop=1&muted=1`}
@@ -136,11 +133,21 @@ const VideoPlayer = ({
                   <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                     <div className="flex items-center gap-3 text-white/90 text-sm sm:text-base">
                       <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-accent-400" />
-                      <span>+977-9765263291</span>
+                      <a
+                        href={`tel:${+9779810685891}`}
+                        className="text-accent-500 hover:text-accent-400 font-medium underline decoration-accent-500/30 hover:decoration-accent-400 transition-all duration-200"
+                      >
+                        +977-9810685891
+                      </a>
                     </div>
                     <div className="flex items-center gap-3 text-white/90 text-sm sm:text-base">
                       <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-accent-400" />
-                      <span className="break-all">janakpurinnhna2079@gmail.com</span>
+                      <a
+                      href="mailto:janakpurinnhna2079@gmail.com"
+                      className="text-accent-500 hover:text-accent-400 font-medium underline decoration-accent-500/30 hover:decoration-accent-400 transition-all duration-200 break-all"
+                      >
+                      janakpurinnhna2079@gmail.com
+                      </a>
                     </div>
                     <div className="flex items-center gap-3 text-white/90 text-sm sm:text-base">
                       <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-accent-400" />
@@ -168,7 +175,7 @@ const VideoPlayer = ({
                   <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-xl sm:rounded-2xl border border-amber-400/30">
                     <div className="text-center">
                       <div className="text-amber-400 font-bold text-xs sm:text-sm mb-1">Celebrating 3rd Aniversary</div>
-                      <div className="text-white text-xs sm:text-sm"></div>
+                      <div className="text-white text-xs sm:text-sm">Upto 20% discounts on all rooms from 23/06/2025 till 16/08/2025*</div>
                     </div>
                   </div>
                 </div>

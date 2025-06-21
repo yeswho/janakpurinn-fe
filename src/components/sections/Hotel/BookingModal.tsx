@@ -334,10 +334,10 @@ const SuccessView = ({ onClose }: { onClose: () => void }) => (
   <div className="text-center py-8">
     <div className="text-accent-500 text-5xl mb-6">✓</div>
     <h3 className="text-xl font-serif font-semibold mb-3 text-text-primary">
-      Booking Confirmed!
+      Booking Received!
     </h3>
     <p className="text-text-secondary mb-8">
-      Thank you for your booking! We will be contacting you shortly.
+      Thank you for the booking! We will be contacting you shortly regarding the confirmation.
     </p>
     <button
       onClick={onClose}
