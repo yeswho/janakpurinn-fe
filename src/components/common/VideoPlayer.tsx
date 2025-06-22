@@ -101,7 +101,7 @@ const VideoPlayer = ({
             variants={container}
             initial="hidden"
             animate="show"
-            className="grid lg:grid-cols-12 gap-6 md:gap-8 items-center"
+            className="grid lg:grid-cols-12 gap-2 md:gap-12 items-center"
           >
 
             <motion.div 
@@ -185,7 +185,7 @@ const VideoPlayer = ({
             {/* Right Content - Booking Card */}
             <motion.div 
               variants={item}
-              className="lg:col-span-5 flex justify-end mt-8 sm:mt-0"
+              className="lg:col-span-5 flex justify-end sm:mt-0"
             >
               <motion.div 
                 className="w-full max-w-md"
