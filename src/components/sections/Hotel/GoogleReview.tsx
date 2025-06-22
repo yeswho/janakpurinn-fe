@@ -1,65 +1,22 @@
 import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
 
-const GoogleReviewsWidget: React.FC = () => {
+const GoogleReviews = () => {
   useEffect(() => {
-    // Load the Elfsight platform script
-    const script = document.createElement('script');
-    script.src = 'https://static.elfsight.com/platform/platform.js';
-    script.async = true;
-    script.defer = true;
-    script.dataset.useServiceCore = '';
-    document.body.appendChild(script);
+    // Load the script only once
+    if (!document.querySelector('script[src*="reviewsonmywebsite"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://reviewsonmywebsite.com/js/v2/embed.js?id=ed4438e9e91ed835b3e5bd228423f3c6';
+      script.async = true;
+      document.body.appendChild(script);
+    }
 
     return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  useEffect(() => {
-    const style = document.createElement("style");
-    style.innerHTML = `
-      div[class*="elfsight-app"] a[href*="elfsight.com/google-reviews-widget"],
-      .elfsight-app-380a1820-3d13-4702-a7a6-74c970ab176a a[href*="elfsight.com"] {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        width: 0 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
+      // Clean up the script if component unmounts
+      const script = document.querySelector('script[src*="reviewsonmywebsite"]');
+      if (script) {
+        document.body.removeChild(script);
       }
-    `;
-    document.head.appendChild(style);
-
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach(() => {
-        const watermarks = document.querySelectorAll(
-          'a[href*="elfsight.com/google-reviews-widget"]'
-        );
-        watermarks.forEach((element) => {
-          (element as HTMLElement).style.visibility = 'hidden';
-          (element as HTMLElement).style.height = '0';
-          (element as HTMLElement).style.width = '0';
-          (element as HTMLElement).style.padding = '0';
-          (element as HTMLElement).style.margin = '0';
-          (element as HTMLElement).style.opacity = '0';
-          (element as HTMLElement).style.pointerEvents = 'none';
-        });
-      });
-    });
-
-    observer.observe(document.body, {
-      subtree: true,
-      childList: true,
-      attributes: true,
-      characterData: true,
-    });
-
-    return () => {
-      document.head.removeChild(style);
-      observer.disconnect();
     };
   }, []);
 
@@ -71,7 +28,6 @@ const GoogleReviewsWidget: React.FC = () => {
       className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Heading */}
         <motion.div
           className="text-center mb-12 sm:mb-16 md:mb-20"
           initial={{ opacity: 0, y: -20 }}
@@ -94,16 +50,18 @@ const GoogleReviewsWidget: React.FC = () => {
           </div>
         </motion.div>
 
-        <div className="flex justify-center">
-          <div
-            className="min-h-[500px] w-full"
-            dangerouslySetInnerHTML={{
-              __html: `
-                <div class="elfsight-app-380a1820-3d13-4702-a7a6-74c970ab176a" data-elfsight-app-lazy></div>
-              `
-            }}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="p-0 overflow-hidden"
+        >
+          <div 
+            data-romw-token="6F5rMeqxRuDG3IUlptDPVb6fvwCtq0Vk1sZyFMIRTs9TmgXDcy"
+            className="min-h-[300px] w-full"
           />
-        </div>
+        </motion.div>
 
         <motion.div
           className="mt-12 sm:mt-16 md:mt-20 text-center"
@@ -135,4 +93,4 @@ const GoogleReviewsWidget: React.FC = () => {
   );
 };
 
-export default GoogleReviewsWidget;
+export default GoogleReviews;
