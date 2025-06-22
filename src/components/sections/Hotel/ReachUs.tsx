@@ -15,11 +15,6 @@ const FindUs: React.FC = () => {
         show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
     };
 
-    const iconHover = {
-        scale: 1.05,
-        transition: { duration: 0.3, ease: "easeOut" }
-    };
-
     return (
         <motion.section
             initial={{ opacity: 0 }}

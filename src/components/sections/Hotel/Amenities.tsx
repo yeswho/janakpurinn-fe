@@ -102,11 +102,6 @@ const Amenities: React.FC = () => {
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
-  const iconHover = {
-    scale: 1.1,
-    transition: { duration: 0.3, ease: "easeOut" }
-  };
-
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -159,7 +154,7 @@ const Amenities: React.FC = () => {
                 >
                   <motion.div 
                     className="text-accent-500"
-                    
+
                   >
                     {amenity.icon}
                   </motion.div>

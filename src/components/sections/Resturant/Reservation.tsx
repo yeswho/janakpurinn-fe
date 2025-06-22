@@ -38,11 +38,6 @@ const Reservation = () => {
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
-  const cardHover = {
-    y: -5,
-    transition: { duration: 0.3, ease: "easeOut" }
-  };
-
   return (
     <motion.div 
       initial={{ opacity: 0 }}

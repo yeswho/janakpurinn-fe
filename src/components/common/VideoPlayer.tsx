@@ -31,10 +31,6 @@ const VideoPlayer = ({
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
-  const iconHover = {
-    scale: 1.1,
-    transition: { duration: 0.3, ease: "easeOut" }
-  };
 
   return (
     <div className={`relative w-full min-h-screen overflow-hidden ${className}`}>
