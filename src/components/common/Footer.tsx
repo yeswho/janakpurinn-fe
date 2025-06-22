@@ -16,10 +16,10 @@ export default function Footer() {
               Experience luxury and comfort in the heart of Janakpur. Our hotel offers world-class amenities and authentic Nepalese hospitality.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-text-secondary hover:text-accent-500 transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=100083011133377" className="text-text-secondary hover:text-accent-500 transition-colors">
                 <FaFacebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-text-secondary hover:text-accent-500 transition-colors">
+              <a href="https://www.instagram.com/hoteljanakpurinn/" className="text-text-secondary hover:text-accent-500 transition-colors">
                 <FaInstagram className="h-5 w-5" />
               </a>
               <a href="https://www.booking.com/hotel/np/janakpur-inn" className="text-text-secondary hover:text-accent-500 transition-colors">
