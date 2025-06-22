@@ -3,7 +3,7 @@ const Policies = () => {
   const policies = {
     title: "Hotel JanakpurInn Policies",
     checkInOut: {
-      checkIn: "12:00 PM",
+      checkIn: "1:00 PM",
       checkOut: "12:00 PM"
     },
     sections: [
@@ -20,7 +20,7 @@ const Policies = () => {
         content: "To reserve and check into a guestroom, visitors must be at least 18 years old and have valid government-issued identification."
       },
       {
-        title: "OCCUPANCY",
+        title: "OCCUPANCY AREA",
         content: "If there are more than 2 adults in a guest room, there will be an extra person fee. When using existing beds, one child under 8 years old stays free of charge. Each additional bed costs NPR 500 per night. One additional bed is the most that may be placed in a room. The room is not big enough to accommodate cots. Any kind of additional bed, child's cot, or crib must be requested in advance and agreed with management. Supplements must be paid for individually because they are not automatically included in the overall price."
       },
       {
