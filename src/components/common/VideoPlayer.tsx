@@ -95,13 +95,13 @@ const VideoPlayer = ({
         ))}
       </div>
 
-      <div className="relative z-10 flex items-center min-h-screen p-4 sm:p-6">
+      <div className="relative z-10 flex mt-2 min-h-screen px-4 py-4 sm:p-6">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             variants={container}
             initial="hidden"
             animate="show"
-            className="grid lg:grid-cols-12 gap-2 md:gap-12 items-center"
+            className="grid lg:grid-cols-12 gap-3 md:gap-12 items-center"
           >
 
             <motion.div 
@@ -110,7 +110,7 @@ const VideoPlayer = ({
             >
               <motion.div 
                 variants={container}
-                className="space-y-4 md:space-y-6"
+                className="space-y-2 md:space-y-2 mb-2"
               >
                 <motion.div 
                   variants={item}
