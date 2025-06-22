@@ -29,7 +29,7 @@ export default function App() {
         <Route path="gallery" element={<Gallery />} />
         <Route path="menu" element={<Menu />} />
         <Route path="reservation" element={<Reservation />} />
-        <Route path="resturant-gallery" element={<ResturantGallery />} />
+        <Route path="restaurant-gallery" element={<ResturantGallery />} />
         <Route path="find-us" element={<FindUs/>} />
         <Route path="contact" element={<Contact />} />
         <Route path="/booking" element={<Booking />} />

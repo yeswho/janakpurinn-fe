@@ -1,10 +1,11 @@
 import { CheckCircle, Clock, Phone, Utensils } from 'lucide-react';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import RestaurantReservation from '../Hotel/ResturantReservation';
 
 const Reservation = () => {
   const [isHovered, setIsHovered] = useState(false);
-const [isReservationOpen, setIsReservationOpen] = useState(false);
+  const [isReservationOpen, setIsReservationOpen] = useState(false);
 
   const restaurantData = {
     name: "Hotel Restaurant",
@@ -24,8 +25,31 @@ const [isReservationOpen, setIsReservationOpen] = useState(false);
     ]
   };
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
+  const cardHover = {
+    y: -5,
+    transition: { duration: 0.3, ease: "easeOut" }
+  };
+
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className="relative min-h-screen overflow-hidden"
+    >
       <div className="absolute inset-0 z-0">
         <div
           className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center"
@@ -34,77 +58,153 @@ const [isReservationOpen, setIsReservationOpen] = useState(false);
         <div className="absolute inset-0 bg-gradient-to-b from-primary-100/40 via-primary-50/60 to-accent-300/20" />
       </div>
 
-      <div className="relative z-10 py-14 sm:px-6 lg:px-8">
+      <div className="relative z-10 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
+          {/* Heading */}
+          <motion.div
+            className="text-center mb-12 sm:mb-16"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.h1
+              className="text-2xl sm:text-3xl md:text-4xl font-serif font-light text-white mb-4 sm:mb-6 tracking-tight"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              Restaurant Reservations
+            </motion.h1>
+            <div className="text-center mb-6 sm:mb-12">
+              <h2 className="text-base sm:text-lg md:text-xl font-serif font-medium text-white">
+                Dine With Us
+              </h2>
+              <div className="w-16 sm:w-24 h-1 bg-accent-400 mx-auto mt-3 sm:mt-6"></div>
+            </div>
+          </motion.div>
 
-          <div className="hotel-card max-w-none">
-            <div className="mb-10">
-              <p className="text-lg text-text-primary leading-relaxed text-center">
+          <motion.div 
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="hotel-card max-w-none p-6 sm:p-8"
+          >
+            <motion.div 
+              variants={item}
+              className="mb-8 sm:mb-10"
+            >
+              <p className="text-sm sm:text-base text-text-primary leading-relaxed text-center">
                 {restaurantData.description}
               </p>
-            </div>
+            </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8 mb-10">
-              <div className="bg-primary-100/50 rounded-lg p-6 border border-gray-200/30 hover:bg-primary-100/70 transition-all duration-300">
-                <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-accent-400/20 rounded-lg flex items-center justify-center mr-4">
+            <motion.div 
+              variants={container}
+              className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10"
+            >
+              {/* Dining Hours */}
+              <motion.div 
+                variants={item}
+                whileHover="hover"
+                className="bg-primary-100/50 rounded-lg p-5 sm:p-6 border border-gray-200/30 transition-all duration-300"
+              >
+                <div className="flex items-center mb-4 sm:mb-6">
+                  <motion.div 
+                    className="w-10 h-10 bg-accent-400/20 rounded-lg flex items-center justify-center mr-4"
+                    whileHover={{ scale: 1.1 }}
+                  >
                     <Clock className="w-5 h-5 text-accent-500" />
-                  </div>
-                  <h3 className="text-xl font-serif text-accent-500 font-medium">Dining Hours</h3>
+                  </motion.div>
+                  <h3 className="text-lg sm:text-xl font-serif text-accent-500 font-medium">Dining Hours</h3>
                 </div>
                 <div className="space-y-3">
                   {Object.entries(restaurantData.hours).map(([meal, time]) => (
-                    <div key={meal} className="flex justify-between items-center py-2 border-b border-gray-200/40 last:border-b-0">
-                      <span className="text-text-primary capitalize font-medium">{meal}</span>
-                      <span className="text-text-secondary font-semibold bg-white/60 px-3 py-1 rounded-md text-sm">
+                    <motion.div 
+                      key={meal} 
+                      className="flex justify-between items-center py-2 border-b border-gray-200/40 last:border-b-0"
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="text-sm sm:text-base text-text-primary capitalize font-medium">{meal}</span>
+                      <span className="text-xs sm:text-sm text-text-secondary font-semibold bg-white/60 px-3 py-1 rounded-md">
                         {time}
                       </span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-primary-100/50 rounded-lg p-6 border border-gray-200/30 hover:bg-primary-100/70 transition-all duration-300">
-                <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-accent-400/20 rounded-lg flex items-center justify-center mr-4">
+              {/* Our Features */}
+              <motion.div 
+                variants={item}
+                whileHover="hover"
+                className="bg-primary-100/50 rounded-lg p-5 sm:p-6 border border-gray-200/30 transition-all duration-300"
+              >
+                <div className="flex items-center mb-4 sm:mb-6">
+                  <motion.div 
+                    className="w-10 h-10 bg-accent-400/20 rounded-lg flex items-center justify-center mr-4"
+                    whileHover={{ scale: 1.1 }}
+                  >
                     <CheckCircle className="w-5 h-5 text-accent-500" />
-                  </div>
-                  <h3 className="text-xl font-serif text-accent-500 font-medium">Our Features</h3>
+                  </motion.div>
+                  <h3 className="text-lg sm:text-xl font-serif text-accent-500 font-medium">Our Features</h3>
                 </div>
                 <div className="space-y-3">
                   {restaurantData.features.map((feature, index) => (
-                    <div key={index} className="flex items-start group">
+                    <motion.div 
+                      key={index} 
+                      className="flex items-start group"
+                      whileHover={{ x: 5 }}
+                    >
                       <div className="w-1.5 h-1.5 bg-accent-400 rounded-full mr-3 mt-2 group-hover:bg-accent-500 transition-colors duration-200"></div>
-                      <span className="text-text-primary group-hover:text-text-primary transition-colors duration-200">
+                      <span className="text-sm sm:text-base text-text-primary group-hover:text-text-primary transition-colors duration-200">
                         {feature}
                       </span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div className="divider" />
+            <motion.div 
+              variants={item}
+              className="divider mx-auto w-16 sm:w-24 h-1 bg-accent-400 my-8 sm:my-10"
+            />
 
-            <div className="text-center">
-              <button
+            <motion.div 
+              variants={item}
+              className="text-center"
+            >
+              <motion.button
                 className={`btn-primary inline-flex items-center space-x-2 transform transition-all duration-300 ${isHovered ? 'scale-105' : ''}`}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                  onClick={() => setIsReservationOpen(true)
-                }
+                onClick={() => setIsReservationOpen(true)}
+                whileHover={{ scale: 1.05 }}
               >
                 <Utensils className="w-5 h-5" />
                 <span>Make a Reservation</span>
-              </button>
+              </motion.button>
 
-              <div className="mt-8 p-4 bg-accent-300/10 border border-accent-300/30 rounded-lg">
-                <p className="text-text-secondary italic text-sm">
+              <motion.div 
+                className="mt-6 sm:mt-8 p-4 bg-accent-300/10 border border-accent-300/30 rounded-lg"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <p className="text-xs sm:text-sm text-text-secondary italic">
                   {restaurantData.note}
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="mt-6 flex items-center justify-center space-x-2 text-text-secondary">
+              <motion.div 
+                className="mt-6 flex items-center justify-center space-x-2 text-sm sm:text-base text-text-secondary"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <Phone className="w-4 h-4 text-accent-500" />
                 <span>Contact us on</span>
                 <a
@@ -114,16 +214,16 @@ const [isReservationOpen, setIsReservationOpen] = useState(false);
                   {restaurantData.contact}
                 </a>
                 <span>for further details.</span>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
       <RestaurantReservation
         isOpen={isReservationOpen}
         onClose={() => setIsReservationOpen(false)}
       />
-    </div>
+    </motion.div>
   );
 };
 
