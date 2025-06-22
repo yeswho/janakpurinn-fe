@@ -138,7 +138,7 @@ const Rooms: React.FC = () => {
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
     >
       {roomData.length > 0 && (
-        <div className="fixed bottom-4 right-4 z-40">
+        <div className="fixed bottom-10 right-24 z-40">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
