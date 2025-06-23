@@ -345,7 +345,7 @@ export default function AdminBookingsPage() {
                                                 <h3 className="font-bold text-gray-800">Room Details</h3>
                                             </div>
                                             <div className="grid gap-3">
-                                                {selectedBooking.rooms.map((room: any, index: number) => (
+                                                {selectedBooking.rooms.map((room: any) => (
                                                     <div key={room.id} className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-white/50">
                                                         <div className="flex justify-between items-center">
                                                             <div>
