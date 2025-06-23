@@ -249,44 +249,46 @@ export default function AdminBookingsPage() {
                 onClose={onClose}
                 size="2xl"
                 scrollBehavior="inside"
+                placement="center"
+                className="mx-2 sm:mx-0" // Add margin on mobile
                 classNames={{
                     backdrop: "bg-gradient-to-t from-zinc-900/50 to-zinc-900/20 backdrop-blur-sm",
-                    base: "border-[1px] border-gray-200/20 bg-white/95 backdrop-blur-md shadow-2xl",
+                    base: "border-[1px] border-gray-200/20 bg-white/95 backdrop-blur-md shadow-2xl max-h-[90vh]",
                     header: "border-b-[1px] border-gray-200/50 bg-gradient-to-r from-gray-50/80 to-white/80",
-                    body: "py-6",
-                    footer: "border-t-[1px] border-gray-200/50 bg-gradient-to-r from-gray-50/80 to-white/80"
+                    body: "py-4 sm:py-6 px-3 sm:px-6", // Adjusted padding for mobile
+                    footer: "border-t-[1px] border-gray-200/50 bg-gradient-to-r from-gray-50/80 to-white/80 px-3 sm:px-6"
                 }}
             >
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">
+                            <ModalHeader className="flex flex-col gap-1 px-4 sm:px-6">
                                 <div className="flex items-center gap-3">
                                     <div>
-                                        <h2 className="text-xl font-bold text-gray-800">
+                                        <h2 className="text-lg sm:text-xl font-bold text-gray-800">
                                             Booking #{selectedBooking?.booking_reference}
                                         </h2>
-                                        <p className="text-sm text-gray-500 font-normal">
+                                        <p className="text-xs sm:text-sm text-gray-500 font-normal">
                                             {selectedBooking && format(new Date(selectedBooking.created_at), 'MMM d, yyyy \'at\' h:mm a')}
                                         </p>
                                     </div>
                                 </div>
                             </ModalHeader>
 
-                            <ModalBody className="px-6">
+                            <ModalBody className="px-2 sm:px-4">
                                 {selectedBooking && (
-                                    <div className="space-y-6">
+                                    <div className="space-y-4 sm:space-y-6">
                                         {/* Status Banner */}
-                                        <div className={`p-4 rounded-xl border-2 ${getStatusColor(selectedBooking.status)}`}>
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-3 h-3 rounded-full bg-current opacity-60"></div>
-                                                    <span className="font-semibold text-sm uppercase tracking-wide">
+                                        <div className={`p-3 sm:p-4 rounded-xl border-2 ${getStatusColor(selectedBooking.status)}`}>
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-current opacity-60"></div>
+                                                    <span className="font-semibold text-xs sm:text-sm uppercase tracking-wide">
                                                         {selectedBooking.status}
                                                     </span>
                                                 </div>
                                                 <div className="text-right">
-                                                    <p className="text-2xl font-bold">
+                                                    <p className="text-xl sm:text-2xl font-bold">
                                                         Nrs. {selectedBooking.total_amount.toFixed(2)}
                                                     </p>
                                                     <p className="text-xs opacity-75">Total Amount</p>
@@ -294,66 +296,66 @@ export default function AdminBookingsPage() {
                                             </div>
                                         </div>
 
-                                        {/* Guest & Booking Info Grid */}
-                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                        {/* Guest & Booking Info Grid - Stack on mobile */}
+                                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
                                             {/* Guest Information */}
-                                            <div className="bg-gradient-to-br rounded-xl p-5 border border-blue-100/50">
-                                                <div className="flex items-center gap-2 mb-4">
-                                                    <h3 className="font-bold text-gray-800">Guest Information</h3>
+                                            <div className="bg-gradient-to-br rounded-xl p-3 sm:p-5 border border-blue-100/50">
+                                                <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                                                    <h3 className="font-bold text-sm sm:text-base text-gray-800">Guest Information</h3>
                                                 </div>
-                                                <div className="space-y-3">
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="text-sm font-medium text-gray-600 w-16">Name:</span>
-                                                        <span className="text-sm font-semibold text-gray-800">{selectedBooking.first_name} {selectedBooking.last_name}</span>
+                                                <div className="space-y-2 sm:space-y-3">
+                                                    <div className="flex items-start sm:items-center gap-2">
+                                                        <span className="text-xs sm:text-sm font-medium text-gray-600 w-12 sm:w-16">Name:</span>
+                                                        <span className="text-xs sm:text-sm font-semibold text-gray-800 break-words">{selectedBooking.first_name} {selectedBooking.last_name}</span>
                                                     </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="text-sm font-medium text-gray-600 w-16">Email:</span>
-                                                        <span className="text-sm text-blue-600 font-medium">{selectedBooking.email}</span>
+                                                    <div className="flex items-start sm:items-center gap-2">
+                                                        <span className="text-xs sm:text-sm font-medium text-gray-600 w-12 sm:w-16">Email:</span>
+                                                        <span className="text-xs sm:text-sm text-blue-600 font-medium break-all">{selectedBooking.email}</span>
                                                     </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="text-sm font-medium text-gray-600 w-16">Phone:</span>
-                                                        <span className="text-sm font-semibold text-gray-800">{selectedBooking.phone}</span>
+                                                    <div className="flex items-start sm:items-center gap-2">
+                                                        <span className="text-xs sm:text-sm font-medium text-gray-600 w-12 sm:w-16">Phone:</span>
+                                                        <span className="text-xs sm:text-sm font-semibold text-gray-800">{selectedBooking.phone}</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             {/* Booking Details */}
-                                            <div className="bg-gradient-to-br rounded-xl p-5 border border-emerald-100/50">
-                                                <div className="flex items-center gap-2 mb-4">
-                                                    <h3 className="font-bold text-gray-800">Booking Details</h3>
+                                            <div className="bg-gradient-to-br rounded-xl p-3 sm:p-5 border border-emerald-100/50">
+                                                <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                                                    <h3 className="font-bold text-sm sm:text-base text-gray-800">Booking Details</h3>
                                                 </div>
-                                                <div className="space-y-3">
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="text-sm font-medium text-gray-600 w-20">Check-in:</span>
-                                                        <span className="text-sm font-semibold text-gray-800">{format(new Date(selectedBooking.check_in), 'MMM d, yyyy')}</span>
+                                                <div className="space-y-2 sm:space-y-3">
+                                                    <div className="flex items-start sm:items-center gap-2">
+                                                        <span className="text-xs sm:text-sm font-medium text-gray-600 w-16 sm:w-20">Check-in:</span>
+                                                        <span className="text-xs sm:text-sm font-semibold text-gray-800">{format(new Date(selectedBooking.check_in), 'MMM d, yyyy')}</span>
                                                     </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="text-sm font-medium text-gray-600 w-20">Check-out:</span>
-                                                        <span className="text-sm font-semibold text-gray-800">{format(new Date(selectedBooking.check_out), 'MMM d, yyyy')}</span>
+                                                    <div className="flex items-start sm:items-center gap-2">
+                                                        <span className="text-xs sm:text-sm font-medium text-gray-600 w-16 sm:w-20">Check-out:</span>
+                                                        <span className="text-xs sm:text-sm font-semibold text-gray-800">{format(new Date(selectedBooking.check_out), 'MMM d, yyyy')}</span>
                                                     </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="text-sm font-medium text-gray-600 w-20">Payment:</span>
-                                                        <span className="text-sm font-semibold text-gray-800">{selectedBooking.payment_method}</span>
+                                                    <div className="flex items-start sm:items-center gap-2">
+                                                        <span className="text-xs sm:text-sm font-medium text-gray-600 w-16 sm:w-20">Payment:</span>
+                                                        <span className="text-xs sm:text-sm font-semibold text-gray-800">{selectedBooking.payment_method}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         {/* Rooms Section */}
-                                        <div className="bg-gradient-to-br rounded-xl p-5 border border-purple-100/50">
-                                            <div className="flex items-center gap-2 mb-4">
-                                                <h3 className="font-bold text-gray-800">Room Details</h3>
+                                        <div className="bg-gradient-to-br rounded-xl p-3 sm:p-5 border border-purple-100/50">
+                                            <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                                                <h3 className="font-bold text-sm sm:text-base text-gray-800">Room Details</h3>
                                             </div>
-                                            <div className="grid gap-3">
+                                            <div className="grid gap-2 sm:gap-3">
                                                 {selectedBooking.rooms.map((room: any) => (
-                                                    <div key={room.id} className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-white/50">
-                                                        <div className="flex justify-between items-center">
-                                                            <div>
-                                                                <h4 className="font-semibold text-gray-800">{room.title}</h4>
-                                                                <p className="text-sm text-gray-600">Category: {room.category}</p>
+                                                    <div key={room.id} className="bg-white/60 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/50">
+                                                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                                                            <div className="flex-1">
+                                                                <h4 className="font-semibold text-sm sm:text-base text-gray-800">{room.title}</h4>
+                                                                <p className="text-xs sm:text-sm text-gray-600">Category: {room.category}</p>
                                                             </div>
-                                                            <div className="text-right">
-                                                                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                                                            <div className="sm:text-right">
+                                                                <span className="inline-flex items-center px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium bg-purple-100 text-purple-800">
                                                                     x{room.quantity}
                                                                 </span>
                                                             </div>
@@ -364,12 +366,12 @@ export default function AdminBookingsPage() {
                                         </div>
 
                                         {/* Special Requests */}
-                                        <div className="bg-gradient-to-br rounded-xl p-5 border border-amber-100/50">
-                                            <div className="flex items-center gap-2 mb-3">
-                                                <h3 className="font-bold text-gray-800">Special Requests</h3>
+                                        <div className="bg-gradient-to-br rounded-xl p-3 sm:p-5 border border-amber-100/50">
+                                            <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                                                <h3 className="font-bold text-sm sm:text-base text-gray-800">Special Requests</h3>
                                             </div>
-                                            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-white/50">
-                                                <p className="text-sm text-gray-700 italic">
+                                            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/50">
+                                                <p className="text-xs sm:text-sm text-gray-700 italic">
                                                     {selectedBooking.special_requests || 'No special requests made'}
                                                 </p>
                                             </div>
@@ -378,13 +380,13 @@ export default function AdminBookingsPage() {
                                 )}
                             </ModalBody>
 
-                            <ModalFooter className="flex justify-between">
-                                <div className="text-xs text-gray-500">
+                            <ModalFooter className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                                <div className="text-xs text-gray-500 order-2 sm:order-1">
                                     Last updated: {selectedBooking && format(new Date(selectedBooking.updated_at || selectedBooking.created_at), 'MMM d, yyyy h:mm a')}
                                 </div>
                                 <Button
                                     onPress={onClose}
-                                    className="bg-gradient-to-r from-gray-600 to-gray-700 text-white font-medium px-6 py-2 rounded-lg hover:from-gray-700 hover:to-gray-800 transition-all duration-200"
+                                    className="bg-gradient-to-r from-gray-600 to-gray-700 text-white font-medium px-4 sm:px-6 py-1.5 sm:py-2 rounded-lg hover:from-gray-700 hover:to-gray-800 transition-all duration-200 text-sm sm:text-base order-1 sm:order-2 w-full sm:w-auto"
                                 >
                                     Close
                                 </Button>
