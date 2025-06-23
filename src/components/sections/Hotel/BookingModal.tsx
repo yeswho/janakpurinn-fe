@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import { useCreateBooking, type BookingPayload } from '../../../hooks/useBooking';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 export interface RoomType {
   id: string;
@@ -29,7 +31,7 @@ type FormData = {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
+  phone: string; // Now stores full international number (e.g. "+9779841234567")
   checkIn: string;
   checkOut: string;
   specialRequests: string;
@@ -73,7 +75,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
       ...prev,
       [name]: value
     }));
-    
+
     // Clear error when field is edited
     if (formErrors[name as keyof FormData]) {
       setFormErrors(prev => ({
@@ -83,44 +85,96 @@ const BookingModal: React.FC<BookingModalProps> = ({
     }
   };
 
+  const handlePhoneChange = (value: string = '') => {
+    setFormData(prev => ({
+      ...prev,
+      phone: value
+    }));
+
+    if (formErrors.phone) {
+      setFormErrors(prev => ({
+        ...prev,
+        phone: undefined
+      }));
+    }
+  };
+
   const validateForm = (): boolean => {
     const errors: Partial<FormData> = {};
     let isValid = true;
 
+    // First Name validation
     if (!formData.firstName.trim()) {
       errors.firstName = 'First name is required';
       isValid = false;
-    }
-
-    if (!formData.lastName.trim()) {
-      errors.lastName = 'Last name is required';
+    } else if (formData.firstName.length < 2) {
+      errors.firstName = 'First name must be at least 2 characters';
+      isValid = false;
+    } else if (!/^[a-zA-Z\s\-']+$/.test(formData.firstName)) {
+      errors.firstName = 'First name contains invalid characters';
       isValid = false;
     }
 
+    // Last Name validation
+    if (!formData.lastName.trim()) {
+      errors.lastName = 'Last name is required';
+      isValid = false;
+    } else if (formData.lastName.length < 2) {
+      errors.lastName = 'Last name must be at least 2 characters';
+      isValid = false;
+    } else if (!/^[a-zA-Z\s\-']+$/.test(formData.lastName)) {
+      errors.lastName = 'Last name contains invalid characters';
+      isValid = false;
+    }
+
+    // Email validation
     if (!formData.email.trim()) {
       errors.email = 'Email is required';
       isValid = false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = 'Please enter a valid email';
+      errors.email = 'Please enter a valid email address';
       isValid = false;
     }
 
-    if (!formData.phone.trim()) {
+    // Phone validation (now handled by react-phone-number-input)
+    if (!formData.phone) {
       errors.phone = 'Phone number is required';
       isValid = false;
     }
 
+    // Date validation
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     if (!formData.checkIn) {
       errors.checkIn = 'Check-in date is required';
       isValid = false;
+    } else {
+      const checkInDate = new Date(formData.checkIn);
+      checkInDate.setHours(0, 0, 0, 0);
+
+      if (checkInDate < today) {
+        errors.checkIn = 'Check-in date cannot be in the past';
+        isValid = false;
+      }
     }
 
     if (!formData.checkOut) {
       errors.checkOut = 'Check-out date is required';
       isValid = false;
-    } else if (formData.checkIn && new Date(formData.checkOut) <= new Date(formData.checkIn)) {
-      errors.checkOut = 'Check-out date must be after check-in date';
-      isValid = false;
+    } else if (formData.checkIn) {
+      const checkInDate = new Date(formData.checkIn);
+      const checkOutDate = new Date(formData.checkOut);
+      checkInDate.setHours(0, 0, 0, 0);
+      checkOutDate.setHours(0, 0, 0, 0);
+
+      if (checkOutDate <= checkInDate) {
+        errors.checkOut = 'Check-out date must be after check-in date';
+        isValid = false;
+      } else if (checkOutDate < today) {
+        errors.checkOut = 'Check-out date cannot be in the past';
+        isValid = false;
+      }
     }
 
     setFormErrors(errors);
@@ -129,7 +183,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     const bookingData: BookingPayload = {
@@ -141,11 +195,9 @@ const BookingModal: React.FC<BookingModalProps> = ({
     createBooking(bookingData, {
       onSuccess: (data) => {
         setSubmitSuccess(true);
-        // You might want to use a toast notification here instead of alert
         console.log(`Booking created successfully! Reference: ${data.bookingReference}`);
       },
       onError: (error) => {
-        // Consider using a more user-friendly error display
         console.error('Booking failed:', error.message);
       }
     });
@@ -184,7 +236,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
             <h2 className="text-2xl font-serif font-semibold tracking-tight text-text-primary">
               Complete Your Booking
             </h2>
-            <button 
+            <button
               onClick={onClose}
               className="text-gray-500 hover:text-gray-700"
               aria-label="Close modal"
@@ -197,13 +249,13 @@ const BookingModal: React.FC<BookingModalProps> = ({
             <SuccessView onClose={onClose} />
           ) : (
             <>
-              <RoomSummary 
-                selectedRooms={selectedRooms} 
-                roomsData={roomsData} 
-                calculateTotal={calculateTotal} 
+              <RoomSummary
+                selectedRooms={selectedRooms}
+                roomsData={roomsData}
+                calculateTotal={calculateTotal}
                 getRoomDetails={getRoomDetails}
               />
-              
+
               <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   <FormInput
@@ -215,6 +267,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
                     onChange={handleChange}
                     error={formErrors.firstName}
                     required
+                    maxLength={50}
                   />
                   <FormInput
                     label="Last Name *"
@@ -225,6 +278,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
                     onChange={handleChange}
                     error={formErrors.lastName}
                     required
+                    maxLength={50}
                   />
                   <FormInput
                     label="Email *"
@@ -235,17 +289,27 @@ const BookingModal: React.FC<BookingModalProps> = ({
                     onChange={handleChange}
                     error={formErrors.email}
                     required
+                    maxLength={100}
                   />
-                  <FormInput
-                    label="Phone Number *"
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    error={formErrors.phone}
-                    required
-                  />
+
+                  <div>
+                    <label className="block text-sm font-medium text-text-secondary mb-2">
+                      Phone Number *
+                    </label>
+                    <div className={`react-phone-input-wrapper ${formErrors.phone ? 'error' : ''}`}>
+                      <PhoneInput
+                        international
+                        defaultCountry="NP"
+                        value={formData.phone}
+                        onChange={handlePhoneChange}
+                        placeholder="Enter phone number"
+                        className={`w-full !px-4 !py-2 bg-primary-50 border ${formErrors.phone ? '!border-red-300' : '!border-gray-200/50'
+                          } rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-400/30 focus:border-accent-400`}
+                      />
+                    </div>
+                    {formErrors.phone && <p className="mt-1 text-sm text-red-500">{formErrors.phone}</p>}
+                  </div>
+
                   <FormInput
                     label="Check-in Date *"
                     id="checkIn"
@@ -270,6 +334,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
                   />
                 </div>
 
+                {/* Rest of the form remains the same */}
                 <div className="mb-8">
                   <label htmlFor="paymentMethod" className="block text-sm font-medium text-text-secondary mb-2">
                     Payment Method *
@@ -299,7 +364,9 @@ const BookingModal: React.FC<BookingModalProps> = ({
                     value={formData.specialRequests}
                     onChange={handleChange}
                     rows={3}
+                    maxLength={500}
                     className="w-full px-4 py-2 bg-primary-50 border border-gray-200/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-400/30 focus:border-accent-400"
+                    placeholder="Any special requests or notes (max 500 characters)"
                   />
                 </div>
 
@@ -349,8 +416,8 @@ const SuccessView = ({ onClose }: { onClose: () => void }) => (
 );
 
 // Extracted Room Summary Component
-const RoomSummary = ({ 
-  selectedRooms, 
+const RoomSummary = ({
+  selectedRooms,
   calculateTotal,
   getRoomDetails
 }: {
@@ -400,6 +467,7 @@ const FormInput = ({
   error,
   required,
   min,
+  maxLength,
 }: {
   label: string;
   id: string;
@@ -410,6 +478,7 @@ const FormInput = ({
   error?: string;
   required?: boolean;
   min?: string;
+  maxLength?: number;
 }) => (
   <div>
     <label htmlFor={id} className="block text-sm font-medium text-text-secondary mb-2">
@@ -423,9 +492,9 @@ const FormInput = ({
       onChange={onChange}
       required={required}
       min={min}
-      className={`w-full px-4 py-2 bg-primary-50 border ${
-        error ? 'border-red-300' : 'border-gray-200/50'
-      } rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-400/30 focus:border-accent-400`}
+      maxLength={maxLength}
+      className={`w-full px-4 py-2 bg-primary-50 border ${error ? 'border-red-300' : 'border-gray-200/50'
+        } rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-400/30 focus:border-accent-400`}
     />
     {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
   </div>

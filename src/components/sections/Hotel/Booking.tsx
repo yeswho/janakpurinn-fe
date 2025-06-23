@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useRooms } from '../../../hooks/useRooms';
 import { motion } from 'framer-motion';
 import { useCreateBooking } from '../../../hooks/useBooking';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 export interface BookingPayload {
     firstName: string;
@@ -34,6 +36,7 @@ const BookingPage = () => {
         paymentMethod: 'cash' as 'cash' | 'credit_card' | 'debit_card' | 'upi',
     });
 
+    const [formErrors, setFormErrors] = useState<Partial<typeof formData>>({});
     const [selectedRooms, setSelectedRooms] = useState<{ id: string; quantity: number }[]>([]);
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [bookingReference, setBookingReference] = useState('');
@@ -41,6 +44,18 @@ const BookingPage = () => {
     const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+
+        // Clear error when field is edited
+        if (formErrors[name as keyof typeof formErrors]) {
+            setFormErrors(prev => ({ ...prev, [name]: undefined }));
+        }
+    };
+
+    const handlePhoneChange = (value: string = '') => {
+        setFormData(prev => ({ ...prev, phone: value }));
+        if (formErrors.phone) {
+            setFormErrors(prev => ({ ...prev, phone: undefined }));
+        }
     };
 
     const handleRoomSelect = (roomId: string, quantity: number) => {
@@ -58,6 +73,94 @@ const BookingPage = () => {
 
             return [...prev, { id: roomId, quantity }];
         });
+    };
+
+    const validateForm = (): boolean => {
+        const errors: Partial<typeof formData> = {};
+        let isValid = true;
+
+        // First Name validation
+        if (!formData.firstName.trim()) {
+            errors.firstName = 'First name is required';
+            isValid = false;
+        } else if (formData.firstName.length < 2) {
+            errors.firstName = 'First name must be at least 2 characters';
+            isValid = false;
+        } else if (!/^[a-zA-Z\s\-']+$/.test(formData.firstName)) {
+            errors.firstName = 'First name contains invalid characters';
+            isValid = false;
+        }
+
+        // Last Name validation
+        if (!formData.lastName.trim()) {
+            errors.lastName = 'Last name is required';
+            isValid = false;
+        } else if (formData.lastName.length < 2) {
+            errors.lastName = 'Last name must be at least 2 characters';
+            isValid = false;
+        } else if (!/^[a-zA-Z\s\-']+$/.test(formData.lastName)) {
+            errors.lastName = 'Last name contains invalid characters';
+            isValid = false;
+        }
+
+        // Email validation
+        if (!formData.email.trim()) {
+            errors.email = 'Email is required';
+            isValid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            errors.email = 'Please enter a valid email address';
+            isValid = false;
+        }
+
+        // Phone validation
+        if (!formData.phone) {
+            errors.phone = 'Phone number is required';
+            isValid = false;
+        }
+
+        // Date validation
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (!formData.checkIn) {
+            errors.checkIn = 'Check-in date is required';
+            isValid = false;
+        } else {
+            const checkInDate = new Date(formData.checkIn);
+            checkInDate.setHours(0, 0, 0, 0);
+
+            if (checkInDate < today) {
+                errors.checkIn = 'Check-in date cannot be in the past';
+                isValid = false;
+            }
+        }
+
+        if (!formData.checkOut) {
+            errors.checkOut = 'Check-out date is required';
+            isValid = false;
+        } else if (formData.checkIn) {
+            const checkInDate = new Date(formData.checkIn);
+            const checkOutDate = new Date(formData.checkOut);
+            checkInDate.setHours(0, 0, 0, 0);
+            checkOutDate.setHours(0, 0, 0, 0);
+
+            if (checkOutDate <= checkInDate) {
+                errors.checkOut = 'Check-out date must be after check-in date';
+                isValid = false;
+            } else if (checkOutDate < today) {
+                errors.checkOut = 'Check-out date cannot be in the past';
+                isValid = false;
+            }
+        }
+
+        // Room selection validation
+        if (selectedRooms.length === 0) {
+            errors.checkIn = 'Please select at least one room';
+            isValid = false;
+        }
+
+        setFormErrors(errors);
+        return isValid;
     };
 
     const filteredRooms = roomData?.filter(room => room.availableRooms > 0) || [];
@@ -81,10 +184,14 @@ const BookingPage = () => {
             paymentMethod: 'cash',
         });
         setSelectedRooms([]);
+        setFormErrors({});
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (!validateForm()) return;
+
         const bookingData: BookingPayload = {
             ...formData,
             rooms: selectedRooms,
@@ -130,60 +237,85 @@ const BookingPage = () => {
                     <div className="hotel-card p-6 mb-8">
                         <h2 className="text-xl font-serif font-semibold mb-4">Personal Information</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <FormInput
-                                label="First Name *"
-                                name="firstName"
-                                value={formData.firstName}
-                                onChange={handleFormChange}
-                                required
-                            />
-                            <FormInput
-                                label="Last Name *"
-                                name="lastName"
-                                value={formData.lastName}
-                                onChange={handleFormChange}
-                                required
-                            />
-                            <FormInput
-                                label="Email *"
-                                name="email"
-                                type="email"
-                                value={formData.email}
-                                onChange={handleFormChange}
-                                required
-                            />
-                            <FormInput
-                                label="Phone *"
-                                name="phone"
-                                type="tel"
-                                value={formData.phone}
-                                onChange={handleFormChange}
-                                required
-                            />
+                            <div>
+                                <FormInput
+                                    label="First Name *"
+                                    name="firstName"
+                                    value={formData.firstName}
+                                    onChange={handleFormChange}
+                                    error={formErrors.firstName}
+                                    required
+                                />
+                                {formErrors.firstName && <p className="mt-1 text-sm text-red-500">{formErrors.firstName}</p>}
+                            </div>
+                            <div>
+                                <FormInput
+                                    label="Last Name *"
+                                    name="lastName"
+                                    value={formData.lastName}
+                                    onChange={handleFormChange}
+                                    error={formErrors.lastName}
+                                    required
+                                />
+                                {formErrors.lastName && <p className="mt-1 text-sm text-red-500">{formErrors.lastName}</p>}
+                            </div>
+                            <div>
+                                <FormInput
+                                    label="Email *"
+                                    name="email"
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={handleFormChange}
+                                    error={formErrors.email}
+                                    required
+                                />
+                                {formErrors.email && <p className="mt-1 text-sm text-red-500">{formErrors.email}</p>}
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium mb-1">Phone *</label>
+                                <PhoneInput
+                                    international
+                                    defaultCountry="NP"
+                                    value={formData.phone}
+                                    onChange={handlePhoneChange}
+                                    placeholder="Enter phone number"
+                                    className={`w-full px-4 py-2 border ${formErrors.phone ? 'border-red-300' : 'border-gray-200'
+                                        } rounded-lg`}
+                                />
+                                {formErrors.phone && <p className="mt-1 text-sm text-red-500">{formErrors.phone}</p>}
+                            </div>
                         </div>
                     </div>
 
                     <div className="hotel-card p-6 mb-8">
                         <h2 className="text-xl font-serif font-semibold mb-4">Booking Details</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <FormInput
-                                label="Check-in *"
-                                name="checkIn"
-                                type="date"
-                                value={formData.checkIn}
-                                onChange={handleFormChange}
-                                required
-                                min={new Date().toISOString().split('T')[0]}
-                            />
-                            <FormInput
-                                label="Check-out *"
-                                name="checkOut"
-                                type="date"
-                                value={formData.checkOut}
-                                onChange={handleFormChange}
-                                required
-                                min={formData.checkIn || new Date().toISOString().split('T')[0]}
-                            />
+                            <div>
+                                <FormInput
+                                    label="Check-in *"
+                                    name="checkIn"
+                                    type="date"
+                                    value={formData.checkIn}
+                                    onChange={handleFormChange}
+                                    error={formErrors.checkIn}
+                                    required
+                                    min={new Date().toISOString().split('T')[0]}
+                                />
+                                {formErrors.checkIn && <p className="mt-1 text-sm text-red-500">{formErrors.checkIn}</p>}
+                            </div>
+                            <div>
+                                <FormInput
+                                    label="Check-out *"
+                                    name="checkOut"
+                                    type="date"
+                                    value={formData.checkOut}
+                                    onChange={handleFormChange}
+                                    error={formErrors.checkOut}
+                                    required
+                                    min={formData.checkIn || new Date().toISOString().split('T')[0]}
+                                />
+                                {formErrors.checkOut && <p className="mt-1 text-sm text-red-500">{formErrors.checkOut}</p>}
+                            </div>
                         </div>
                     </div>
 
@@ -211,7 +343,9 @@ const BookingPage = () => {
                                 value={formData.specialRequests}
                                 onChange={handleFormChange}
                                 rows={3}
+                                maxLength={500}
                                 className="w-full px-4 py-2 border border-gray-200 rounded-lg"
+                                placeholder="Any special requests (max 500 characters)"
                             />
                         </div>
                     </div>
@@ -277,7 +411,7 @@ const BookingPage = () => {
                                 </div>
                                 <button
                                     onClick={handleSubmit}
-                                    disabled={!formData.checkIn || !formData.checkOut || isPending}
+                                    disabled={isPending}
                                     className="btn-primary w-full mt-4 py-3 disabled:opacity-50 flex items-center justify-center"
                                 >
                                     {isPending && (
@@ -307,7 +441,7 @@ const SuccessView = ({ bookingReference }: { bookingReference: string }) => (
         >
             <div className="text-accent-500 text-5xl mb-6">✓</div>
             <h2 className="text-2xl font-serif font-semibold mb-4 text-text-primary">
-                Booking Confirmed!
+                Booking Received!
             </h2>
             <p className="mb-4 text-text-secondary">
                 Thank you for your booking. We will be contacting you shortly.
@@ -374,6 +508,7 @@ const FormInput = ({
     type = 'text',
     value,
     onChange,
+    error,
     required = false,
     min,
 }: {
@@ -382,6 +517,7 @@ const FormInput = ({
     type?: string;
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    error?: string;
     required?: boolean;
     min?: string;
 }) => (
@@ -394,7 +530,8 @@ const FormInput = ({
             onChange={onChange}
             required={required}
             min={min}
-            className="w-full px-4 py-2 border border-gray-200 rounded-lg"
+            className={`w-full px-4 py-2 border ${error ? 'border-red-300' : 'border-gray-200'
+                } rounded-lg`}
         />
     </div>
 );
