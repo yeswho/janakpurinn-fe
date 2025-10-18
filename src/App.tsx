@@ -1,8 +1,6 @@
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom'
 
 import MainLayout from './components/layouts/MainLayout'
-import AdminLayout from './components/layouts/AdminLayout';
-import LoginPage from './components/common/AdminLogin';
 
 import Room from './components/sections/Hotel/Room'
 import Home from './components/pages/Home'
@@ -19,7 +17,7 @@ import Admin from './components/pages/Admin'
 
 export default function App() {
   const location = useLocation()
-  
+
   return (
     <Routes location={location} key={location.pathname}>
       <Route path="/" element={<MainLayout />}>
@@ -35,10 +33,10 @@ export default function App() {
         <Route path="/booking" element={<Booking />} />
         <Route path="/policies" element={<PoliciesPage />} />
       </Route>
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route path="login" element={<LoginPage />} />
-        <Route path="dashboard" element={<Admin />} />
-      </Route>
+      <Route
+        path="/admin"
+        element={<Navigate to="https://checkin-log-fe.vercel.app/" replace />}
+      />
     </Routes>
   )
 }
