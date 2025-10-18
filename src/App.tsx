@@ -13,7 +13,6 @@ import FindUs from './components/pages/FindUs'
 import Contact from './components/pages/Contact'
 import Booking from './components/sections/Hotel/Booking'
 import PoliciesPage from './components/pages/Policies'
-import Admin from './components/pages/Admin'
 
 export default function App() {
   const location = useLocation()
