@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation, Navigate } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 
 import MainLayout from './components/layouts/MainLayout'
 
@@ -13,6 +13,13 @@ import FindUs from './components/pages/FindUs'
 import Contact from './components/pages/Contact'
 import Booking from './components/sections/Hotel/Booking'
 import PoliciesPage from './components/pages/Policies'
+
+// External redirect component for /admin
+const AdminRedirect = () => {
+  // Redirect immediately to external URL
+  window.location.href = 'https://checkin-log-fe.vercel.app/';
+  return null;
+}
 
 export default function App() {
   const location = useLocation()
@@ -32,10 +39,8 @@ export default function App() {
         <Route path="/booking" element={<Booking />} />
         <Route path="/policies" element={<PoliciesPage />} />
       </Route>
-      <Route
-        path="/admin"
-        element={<Navigate to="https://checkin-log-fe.vercel.app/" replace />}
-      />
+      {/* External redirect for /admin */}
+      <Route path="/admin" element={<AdminRedirect />} />
     </Routes>
   )
 }
