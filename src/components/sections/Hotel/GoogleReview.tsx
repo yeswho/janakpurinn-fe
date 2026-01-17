@@ -64,24 +64,6 @@ const GoogleReviews = () => {
   const totalReviews = 231;
 
   // Render stars based on rating
-  const renderStars = (rating: number) => {
-    return (
-      <div className="flex items-center gap-0.5">
-        {[...Array(5)].map((_, i) => (
-          <Star
-            key={i}
-            size={16}
-            className={`${
-              i < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
-            }`}
-          />
-        ))}
-        <span className="ml-2 text-sm font-medium text-text-secondary">
-          {rating.toFixed(1)}
-        </span>
-      </div>
-    );
-  };
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -371,6 +353,22 @@ const GoogleReviews = () => {
           </motion.a>
         </motion.div>
       </div>
+
+      <style>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .line-clamp-5 {
+          display: -webkit-box;
+          -webkit-line-clamp: 5;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
     </motion.section>
   );
 };
