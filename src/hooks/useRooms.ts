@@ -25,8 +25,8 @@ const hardcodedRooms: RoomType[] = [
     capacity: '2 Adults',
     amenities: ['Double bed', 'Kitchenette', 'Smart TV', 'Free WiFi', 'Room service', 'Air conditioning', 'Daily housekeeping', 'Silent neighborhood', '24 hr running water'],
     images: {
-      main: '/images/rooms/apartment.jpg',
-      gallery: ['https://i.ibb.co/5NP0MD1/Double-Bed-Apt.jpg', 'https://i.ibb.co/MDq7GsHH/Double-Bed-Apt4.jpg', 'https://i.ibb.co/rRZr9G4Z/Double-Bed-Apt3-2.jpg'],
+      main: 'https://i.ibb.co/MDq7GsHH/Double-Bed-Apt4.jpg',
+      gallery: ['https://i.ibb.co/5NP0MD1/Double-Bed-Apt.jpg', 'https://i.ibb.co/7J3Vr34V/Double-Bed-Apt2.jpg', 'https://i.ibb.co/rRZr9G4Z/Double-Bed-Apt3-2.jpg'],
     },
     availableRooms: 4,
   },
@@ -39,9 +39,9 @@ const hardcodedRooms: RoomType[] = [
     size: '400 sq.ft',
     capacity: '3 Adults',
     amenities: ['Double bed', 'Single bed', '24 hr running water', 'Smart TV', 'Free WiFi', 'Mini fridge', 'Silent neighborhood', 'Kitchenette'],
-    images: {
-      main: '/images/rooms/deluxe.jpg',
-      gallery: ['/images/rooms/deluxe-1.jpg', '/images/rooms/deluxe-2.jpg'],
+        images: {
+      main: 'https://i.ibb.co/SwL4bZN1/Double-Bed-Single-Bed-Apt3.jpg',
+      gallery: ['https://i.ibb.co/DDncFN22/Double-Bed-Single-Bed-Apt.jpg', 'https://i.ibb.co/20Fv7FGS/Double-Bed-Single-Bed-Apt2.jpg'],
     },
     availableRooms: 6,
   },
@@ -55,8 +55,8 @@ const hardcodedRooms: RoomType[] = [
     capacity: '2 Adults',
     amenities: ['Double bed', 'Smart TV', 'Free WiFi', '24 hr running water', 'Daily housekeeping', 'Balcony', 'Air conditioning', 'Room service'],
     images: {
-      main: '/images/rooms/standard.jpg',
-      gallery: ['/images/rooms/standard-1.jpg', '/images/rooms/standard-2.jpg'],
+      main: 'https://i.ibb.co/fzxYmwmR/Double-Bed-Deluxe3.jpg',
+      gallery: ['https://i.ibb.co/wZbs54m5/Double-Bed-Deluxe2.jpg', 'https://i.ibb.co/N2B61VRb/Double-Bed-Deluxe.jpg'],
     },
     availableRooms: 8,
   },
@@ -70,8 +70,8 @@ const hardcodedRooms: RoomType[] = [
     capacity: '2 Adults',
     amenities: ['Double beds', 'Air conditioning', 'Free WiFi', 'Daily housekeeping', 'Room service', 'Silent neighborhood', '24 hr running water'],
     images: {
-      main: '/images/rooms/non-ac.jpg',
-      gallery: ['/images/rooms/non-ac-1.jpg'],
+      main: 'https://i.ibb.co/8n1cn2J7/Double-Bed-Standard.jpg',
+      gallery: ['https://i.ibb.co/9mMLPbxn/Double-Bed-Standard3.jpg'],
     },
     availableRooms: 5,
   },
@@ -85,8 +85,8 @@ const hardcodedRooms: RoomType[] = [
     capacity: '1 Adult',
     amenities: ['Single beds', 'Ceiling fan', 'Free WiFi', 'Daily housekeeping', 'Room service', 'Silent neighborhood', '24 hr running water'],
     images: {
-      main: '/images/rooms/non-ac.jpg',
-      gallery: ['/images/rooms/non-ac-1.jpg'],
+      main: 'https://i.ibb.co/N6qPvDPG/1-Single-NAC.jpg',
+      gallery: ['https://i.ibb.co/N6qPvDPG/1-Single-NAC.jpg'],
     },
     availableRooms: 5,
   },
@@ -100,8 +100,8 @@ const hardcodedRooms: RoomType[] = [
     capacity: '2 Adults',
     amenities: ['2 Single beds', 'Ceiling fan', 'Free WiFi', 'Daily housekeeping', 'Room service', 'Silent neighborhood', '24 hr running water'],
     images: {
-      main: '/images/rooms/non-ac.jpg',
-      gallery: ['/images/rooms/non-ac-1.jpg'],
+      main: 'https://i.ibb.co/1Gh5k9cb/2-Single-NAC.jpg',
+      gallery: ['https://i.ibb.co/gZdbPpHQ/2BedNAC2.jpg','https://i.ibb.co/wFxZRtXP/2-Single-NAC3.jpg'],
     },
     availableRooms: 5,
   },
@@ -115,8 +115,8 @@ const hardcodedRooms: RoomType[] = [
     capacity: '4 Adults',
     amenities: ['4 Single beds', 'Ceiling fan', 'Free WiFi', 'Daily housekeeping', 'Room service', 'Silent neighborhood', '24 hr running water'],
     images: {
-      main: '/images/rooms/non-ac.jpg',
-      gallery: ['/images/rooms/non-ac-1.jpg'],
+      main: 'https://i.ibb.co/cKvg3BR6/X.jpg',
+      gallery: ['https://i.ibb.co/m5t6zwqX/3BedAC2.jpg'],
     },
     availableRooms: 5,
   },
