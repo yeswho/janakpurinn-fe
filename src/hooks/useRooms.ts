@@ -26,7 +26,7 @@ const hardcodedRooms: RoomType[] = [
     amenities: ['Double bed', 'Kitchenette', 'Smart TV', 'Free WiFi', 'Room service', 'Air conditioning', 'Daily housekeeping', 'Silent neighborhood', '24 hr running water'],
     images: {
       main: '/images/rooms/apartment.jpg',
-      gallery: ['/images/rooms/apartment-1.jpg', '/images/rooms/apartment-2.jpg', '/images/rooms/apartment-3.jpg'],
+      gallery: ['https://i.ibb.co/5NP0MD1/Double-Bed-Apt.jpg', 'https://i.ibb.co/MDq7GsHH/Double-Bed-Apt4.jpg', 'https://i.ibb.co/rRZr9G4Z/Double-Bed-Apt3-2.jpg'],
     },
     availableRooms: 4,
   },
