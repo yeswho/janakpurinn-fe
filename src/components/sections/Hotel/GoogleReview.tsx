@@ -55,8 +55,8 @@ const GoogleReviews = () => {
   ];
 
   // Calculate overall rating
-  const averageRating = (reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length).toFixed(1);
-  const totalReviews = reviews.length;
+  const averageRating = 4.1;
+  const totalReviews = 231;
 
   // Render stars based on rating
   const renderStars = (rating: number) => {
@@ -234,7 +234,7 @@ const GoogleReviews = () => {
             We value your feedback. Share your experience at Janakpur Inn and help others discover our hospitality.
           </motion.p>
           <motion.a
-            href="https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID"
+            href="https://www.google.com/travel/search?g2lb=4965990,72471280,72560029,72573224,72647020,72686036,72803964,72882230,72958624,73059275,73064764,73107089,73192290&hl=en-NP&gl=np&cs=1&ssta=1&q=janakpurinn&ts=CAEaRwopEicyJTB4MzllYzQxNjkxOTRiYjZiZDoweGM3MzM5NzZhMWUzMmUyMzYSGhIUCgcI6g8QARgSEgcI6g8QARgTGAEyAhAA&qs=CAEyFENnc0l0c1RMOGFIdDVabkhBUkFCOAJCCQk24jIeapczx0IJCTbiMh5qlzPH&ap=ugEHcmV2aWV3cw&ictx=111&ved=1t:247458"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
