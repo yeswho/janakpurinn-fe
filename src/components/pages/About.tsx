@@ -1,14 +1,17 @@
-import { motion } from 'framer-motion'
 import AboutUs from '../sections/Hotel/About'
+import SEOWrapper from '../common/SEOWrapper';
+import { AnimationWrapper } from '../common/AnimationWrapper';
 
 export default function About() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <SEOWrapper 
+      title="About Us" 
+      description="Learn more about Janakpur Inn, our history of hospitality, and our commitment to providing an authentic Mithila experience."
+      canonicalUrl="/about"
     >
-    <AboutUs />
-    </motion.div>
+      <AnimationWrapper>
+        <AboutUs />
+      </AnimationWrapper>
+    </SEOWrapper>
   )
 }

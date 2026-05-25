@@ -1,15 +1,17 @@
-import { motion } from 'framer-motion'
 import Menu from '../sections/Resturant/Menu'
+import SEOWrapper from '../common/SEOWrapper';
+import { AnimationWrapper } from '../common/AnimationWrapper';
 
-export default function ResturantMenu() {
+export default function MenuPage() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <SEOWrapper 
+      title="Our Menu" 
+      description="Explore the delicious offerings at Janakpur Inn's restaurant, featuring authentic Mithila cuisine and international favorites."
+      canonicalUrl="/menu"
     >
+      <AnimationWrapper>
         <Menu/>
-      
-    </motion.div>
+      </AnimationWrapper>
+    </SEOWrapper>
   )
 }

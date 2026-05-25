@@ -1,15 +1,17 @@
-import { motion } from 'framer-motion'
 import Reservation from '../sections/Resturant/Reservation'
+import SEOWrapper from '../common/SEOWrapper';
+import { AnimationWrapper } from '../common/AnimationWrapper';
 
-export default function ResturantMenu() {
+export default function ReservationPage() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <SEOWrapper 
+      title="Restaurant Reservation" 
+      description="Book a table at Janakpur Inn's restaurant for an unforgettable dining experience in the heart of Janakpur."
+      canonicalUrl="/reservation"
     >
+      <AnimationWrapper>
         <Reservation/>
-      
-    </motion.div>
+      </AnimationWrapper>
+    </SEOWrapper>
   )
 }

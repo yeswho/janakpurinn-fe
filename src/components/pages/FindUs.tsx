@@ -1,15 +1,17 @@
-import { motion } from 'framer-motion'
 import ReachUs from '../sections/Hotel/ReachUs'
+import SEOWrapper from '../common/SEOWrapper';
+import { AnimationWrapper } from '../common/AnimationWrapper';
 
 export default function FindUs() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <SEOWrapper 
+      title="Find Us" 
+      description="Locate Janakpur Inn on the map and get directions. We are conveniently located near Ramanand Chowk in Janakpur."
+      canonicalUrl="/find-us"
     >
+      <AnimationWrapper>
         <ReachUs/>
-      
-    </motion.div>
+      </AnimationWrapper>
+    </SEOWrapper>
   )
 }

@@ -1,14 +1,17 @@
-import { motion } from 'framer-motion'
 import ContactUs from '../sections/Hotel/Contact'
+import SEOWrapper from '../common/SEOWrapper';
+import { AnimationWrapper } from '../common/AnimationWrapper';
 
 export default function Contact() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <SEOWrapper 
+      title="Contact Us" 
+      description="Get in touch with Janakpur Inn for inquiries, bookings, or feedback. We are located near Ramanand Chowk, Janakpur."
+      canonicalUrl="/contact"
     >
-      <ContactUs/>
-    </motion.div>
+      <AnimationWrapper>
+        <ContactUs/>
+      </AnimationWrapper>
+    </SEOWrapper>
   )
 }

@@ -2,7 +2,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 
 import MainLayout from './components/layouts/MainLayout'
 
-import Room from './components/sections/Hotel/Room'
+import Rooms from './components/pages/Rooms'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
 import Gallery from './components/pages/Gallery'
@@ -28,7 +28,7 @@ export default function App() {
     <Routes location={location} key={location.pathname}>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home/>} />
-        <Route path="rooms" element={<Room />} />
+        <Route path="rooms" element={<Rooms />} />
         <Route path="about" element={<About />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="menu" element={<Menu />} />
