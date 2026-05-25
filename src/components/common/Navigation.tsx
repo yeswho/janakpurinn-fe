@@ -8,6 +8,14 @@ const navigation = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
   { name: 'Rooms', href: '/rooms' },
+  {
+    name: 'Meetings & Events',
+    href: '#',
+    subItems: [
+      { name: 'Vaidehi Boardroom', href: '/halls/vaidehi' },
+      { name: 'Videha Grand Hall', href: '/halls/videha' }
+    ]
+  },
   { name: 'Gallery', href: '/gallery' },
   { name: 'Find Us', href: '/find-us' },
   {
@@ -25,6 +33,23 @@ const navigation = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [restaurantMenuOpen, setRestaurantMenuOpen] = useState(false);
+  const [eventsMenuOpen, setEventsMenuOpen] = useState(false);
+
+  const handleSubMenuToggle = (menuName: string) => {
+    if (menuName === 'Restaurant') {
+      setRestaurantMenuOpen(!restaurantMenuOpen);
+      setEventsMenuOpen(false); // Close other menu
+    } else if (menuName === 'Meetings & Events') {
+      setEventsMenuOpen(!eventsMenuOpen);
+      setRestaurantMenuOpen(false); // Close other menu
+    }
+  };
+
+  const getMenuState = (menuName: string) => {
+    if (menuName === 'Restaurant') return restaurantMenuOpen;
+    if (menuName === 'Meetings & Events') return eventsMenuOpen;
+    return false;
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/30 shadow-sm">
@@ -52,18 +77,18 @@ export default function Navbar() {
         {/* Desktop navigation */}
         <div className="hidden lg:flex lg:items-center lg:gap-x-8">
           {navigation.map((item) => (
-            <div key={item.name} className="relative">
+            <div key={item.name} className="relative group">
               {item.subItems ? (
                 <>
                   <button
-                    onClick={() => setRestaurantMenuOpen(!restaurantMenuOpen)}
+                    onClick={() => handleSubMenuToggle(item.name)}
                     className="flex items-center gap-x-1 text-sm font-medium leading-6 text-text-primary hover:text-accent-500 transition-all duration-200 px-3 py-2 rounded-lg hover:bg-primary-100/50"
                   >
                     {item.name}
-                    <ChevronDownIcon className={`h-4 w-4 transition-transform duration-200 ${restaurantMenuOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDownIcon className={`h-4 w-4 transition-transform duration-200 ${getMenuState(item.name) ? 'rotate-180' : ''}`} />
                   </button>
                   <AnimatePresence>
-                    {restaurantMenuOpen && (
+                    {getMenuState(item.name) && (
                       <motion.div
                         initial={{ opacity: 0, y: -10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -107,7 +132,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu with enhanced animations */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -158,14 +183,14 @@ export default function Navbar() {
                         {item.subItems ? (
                           <div className="space-y-2">
                             <button
-                              onClick={() => setRestaurantMenuOpen(!restaurantMenuOpen)}
+                              onClick={() => handleSubMenuToggle(item.name)}
                               className="-mx-3 flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium leading-7 text-text-primary hover:bg-primary-100/70 hover:text-accent-500 transition-all duration-200"
                             >
                               {item.name}
-                              <ChevronDownIcon className={`h-4 w-4 transition-transform duration-200 ${restaurantMenuOpen ? 'rotate-180' : ''}`} />
+                              <ChevronDownIcon className={`h-4 w-4 transition-transform duration-200 ${getMenuState(item.name) ? 'rotate-180' : ''}`} />
                             </button>
                             <AnimatePresence>
-                              {restaurantMenuOpen && (
+                              {getMenuState(item.name) && (
                                 <motion.div
                                   initial={{ opacity: 0, height: 0 }}
                                   animate={{ opacity: 1, height: 'auto' }}
