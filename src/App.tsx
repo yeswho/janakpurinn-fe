@@ -14,6 +14,10 @@ import Contact from './components/pages/Contact'
 import Booking from './components/sections/Hotel/Booking'
 import PoliciesPage from './components/pages/Policies'
 
+// Import new Hall pages
+import VaidehiBoardroom from './components/pages/Halls/VaidehiBoardroom';
+import VidehaGrandHall from './components/pages/Halls/VidehaGrandHall';
+
 // External redirect component for /admin
 const AdminRedirect = () => {
   // Redirect immediately to external URL
@@ -38,6 +42,9 @@ export default function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/policies" element={<PoliciesPage />} />
+        {/* New Hall Routes */}
+        <Route path="halls/vaidehi" element={<VaidehiBoardroom />} />
+        <Route path="halls/videha" element={<VidehaGrandHall />} />
       </Route>
       {/* External redirect for /admin */}
       <Route path="/admin" element={<AdminRedirect />} />
