@@ -25,7 +25,7 @@ const hardcodedAboutData: AboutData = {
     {
       title: "Elegant Accommodations",
       content:
-        "Within our boutique hotel establishment, you'll find a range of contemporary and spacious rooms tailored to your comfort needs. We offer four distinct categories: luxurious Apartments, premium Deluxe rooms, comfortable Standard rooms, and value Non A/C standard rooms – each thoughtfully furnished with modern aesthetics and local artisan touches.",
+        "Within our boutique hotel establishment, you'll find a range of contemporary and spacious rooms tailored to your comfort needs. We offer three distinct categories: luxurious Apartments, premium Deluxe rooms, and comfortable Standard rooms – each thoughtfully furnished with modern aesthetics and local artisan touches.",
       image: "https://i.ibb.co/5NP0MD1/Double-Bed-Apt.jpg",
     },
     {
@@ -62,6 +62,13 @@ const hardcodedAboutData: AboutData = {
       bio:
         "Manish leads our housekeeping team, ensuring that every corner of the hotel is spotless and welcoming.",
       image: "https://i.ibb.co/8ZJFknj/manish-Dai.png",
+    },
+    {
+      name: "Arjun Kumar Thakur",
+      position: "House Keeping in Charge",
+      bio:
+        "Arjun coordinates housekeeping operations, maintaining strict quality controls to ensure immaculate environments for all rooms.",
+      image: "/IMG_0107.jpg",
     },
     {
       name: "Ajay Thapa",

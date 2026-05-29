@@ -1,22 +1,25 @@
 @import "tailwindcss";
+@source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
 
 @theme {
-  /* Modern oklch() color palette - calm theme */
-  --color-primary-50: oklch(98% 0.01 260);  /* Snow white */
-  --color-primary-100: oklch(95% 0.02 255); /* Ice blue */
-  --color-primary-200: oklch(90% 0.04 245); /* Morning mist */
+  /* Mithila-inspired elegant parchment palette */
+  --color-primary-50: oklch(99% 0.005 85);   /* Ethereal Cream */
+  --color-primary-100: oklch(97.5% 0.01 85); /* Pearl Parchment */
+  --color-primary-200: oklch(94% 0.015 85);  /* Soft Dust */
   
-  --color-accent-300: oklch(82% 0.08 235);  /* Soft aqua */
-  --color-accent-400: oklch(75% 0.12 230);  /* Calm ocean */
-  --color-accent-500: oklch(68% 0.15 225);  /* Deep lagoon */
+  --color-accent-300: oklch(82% 0.06 85);    /* Muted Gold */
+  --color-accent-400: oklch(72% 0.10 35);    /* Soft Sienna */
+  --color-accent-500: oklch(42% 0.15 28);    /* Heritage Madder (Used sparingly) */
   
-  --color-gray-100: oklch(94% 0.01 260);    /* Silver */
-  --color-gray-200: oklch(88% 0.02 260);    /* Pebble */
-  --color-gray-300: oklch(80% 0.03 260);    /* Stone */
+  --color-secondary-500: oklch(35% 0.08 265); /* Deep Ink Blue */
   
-  /* Semantic text colors */
-  --color-text-primary: oklch(25% 0.02 260);
-  --color-text-secondary: oklch(45% 0.03 260);
+  --color-gray-100: oklch(94% 0.01 85);
+  --color-gray-200: oklch(88% 0.02 85);
+  --color-gray-300: oklch(80% 0.03 85);
+  
+  /* Semantic text colors - High contrast but soft */
+  --color-text-primary: oklch(18% 0.01 85);   /* Obsidian Ink */
+  --color-text-secondary: oklch(48% 0.02 85); /* Graphite Dust */
   
   /* Extended spacing for luxury feel */
   --spacing-18: 4.5rem;
@@ -25,36 +28,105 @@
 
 @layer base {
   :root {
-
+    --mithila-pattern: radial-gradient(circle, var(--color-primary-200) 0.5px, transparent 0.5px);
+    --paper-texture: url("https://www.transparenttextures.com/patterns/natural-paper.png");
   }
   
   body {
     @apply bg-primary-50 text-text-primary font-sans antialiased;
-    background-image: radial-gradient(var(--color-primary-100) 1px, transparent 1px);
-    background-size: 16px 16px;
+    background-color: var(--color-primary-50);
+    background-image: var(--paper-texture), var(--mithila-pattern);
+    background-size: auto, 48px 48px; /* More white space in pattern */
+    letter-spacing: -0.01em;
   }
   
   h1, h2, h3 {
-    @apply font-serif tracking-tight;
+    @apply font-serif tracking-tight text-text-primary font-medium;
   }
 }
 
 @layer components {
+  /* Ultra-Elegant Filigree Border */
+  .mithila-card {
+    @apply bg-white/60 backdrop-blur-xl relative p-8 sm:p-12 rounded-sm shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] transition-all duration-700;
+    border: 1px solid oklch(82% 0.06 85 / 0.3); /* Thin gold hair-line */
+  }
+
   .hotel-card {
-    @apply bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-xl p-8;
+    @apply bg-white relative rounded-sm shadow-2xl border border-accent-300/10 transition-all duration-300;
   }
-    .hotel-card:hover {
-        @apply shadow-sm;
-    }
   
-  .btn-primary {
-    @apply bg-gradient-to-b from-accent-400 to-accent-500 text-white px-8 py-3 rounded-lg font-medium shadow-sm hover:shadow-md transition-all;
+  .mithila-card::before {
+    content: '';
+    @apply absolute inset-2 border border-accent-500/10 pointer-events-none;
+    clip-path: polygon(0 0, 15% 0, 15% 1px, 0 1px, 0 15%, 1px 15%, 1px 0); /* Corner Filigree */
   }
-    .btn-primary:hover {
-        @apply bg-accent-500 shadow-lg;
-    }
+
+  .btn-mithila {
+    @apply relative overflow-hidden bg-text-primary text-primary-50 px-8 py-4 font-serif font-bold tracking-[0.3em] uppercase transition-all duration-500 flex items-center justify-center text-center active:scale-95 shadow-lg hover:shadow-2xl hover:bg-accent-500 hover:-translate-y-0.5;
+    min-height: 56px;
+    font-size: 11px;
+  }
+
+  .btn-mithila-light {
+    @apply relative overflow-hidden bg-white text-text-primary px-8 py-4 font-serif font-bold tracking-[0.3em] uppercase transition-all duration-500 flex items-center justify-center text-center active:scale-95 shadow-lg hover:shadow-2xl hover:bg-primary-50 hover:-translate-y-0.5 border border-gray-100;
+    min-height: 56px;
+    font-size: 11px;
+  }
   
-  .divider {
-    @apply h-px w-full bg-gradient-to-r from-transparent via-gray-200/50 to-transparent my-8;
+  .btn-mithila::after, .btn-mithila-light::after {
+    content: '';
+    @apply absolute inset-0 border border-white/10 scale-90 opacity-0 transition-all duration-500;
+  }
+  
+  .btn-mithila:active::after, .btn-mithila-light:active::after {
+    @apply scale-100 opacity-100;
+  }
+
+  .mithila-section-title {
+    @apply relative inline-block mb-10 sm:mb-16 pb-4;
+    &::after {
+      content: '';
+      @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-px bg-accent-500/40;
+    }
+  }
+
+  .mithila-divider {
+    @apply h-px w-full my-16 sm:my-24 bg-gradient-to-r from-transparent via-accent-300/30 to-transparent;
+  }
+
+  /* Floating glass container */
+  .floating-glass {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20 shadow-2xl;
+  }
+
+  /* Custom Swiper Navigation */
+  .look-around-swiper {
+    @apply !overflow-visible !px-0;
+  }
+
+  .look-around-swiper .swiper-button-prev,
+  .look-around-swiper .swiper-button-next {
+    @apply !text-text-primary !bg-white !shadow-sm !rounded-full !w-12 !h-12 !flex !items-center !justify-center !transition-all !opacity-100 !border !border-gray-100 active:bg-text-primary active:!text-white;
+    --swiper-navigation-size: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .look-around-swiper .swiper-button-prev:hover,
+  .look-around-swiper .swiper-button-next:hover {
+    @apply bg-text-primary text-white shadow-lg scale-110;
+  }
+
+  .look-around-swiper .swiper-button-prev {
+    @apply !-left-12 sm:!-left-16 lg:!-left-20;
+  }
+
+  .look-around-swiper .swiper-button-next {
+    @apply !-right-12 sm:!-right-16 lg:!-right-20;
+  }
+
+  .look-around-swiper .swiper-pagination-bullet-active {
+    @apply bg-text-primary;
   }
 }

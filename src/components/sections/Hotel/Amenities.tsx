@@ -4,7 +4,7 @@ import {
   WifiIcon,
   TvIcon,
 } from '@heroicons/react/24/outline';
-import { FaParking, FaPlaneArrival, FaCoffee, FaSnowflake, FaLuggageCart, FaHamburger, FaClock, FaCat, FaBell, FaBriefcaseMedical } from 'react-icons/fa';
+import { FaParking, FaPlaneArrival, FaCoffee, FaSnowflake, FaLuggageCart, FaHamburger, FaClock, FaCat, FaBell, FaBriefcaseMedical, FaDumbbell, FaPlug } from 'react-icons/fa';
 
 interface Amenity {
   id: number;
@@ -85,6 +85,18 @@ const amenities: Amenity[] = [
     name: 'On Call Doctor',
     icon: <FaBriefcaseMedical className="h-8 w-8 sm:h-10 sm:w-10" />,
     description: 'Medical assistance available on request'
+  },
+  {
+    id: 13,
+    name: '3rd-Party Gym Option',
+    icon: <FaDumbbell className="h-8 w-8 sm:h-10 sm:w-10" />,
+    description: 'Access to premium nearby fitness & gym facilities'
+  },
+  {
+    id: 14,
+    name: 'EV AC Charging Port',
+    icon: <FaPlug className="h-8 w-8 sm:h-10 sm:w-10" />,
+    description: 'AC power charging port available for electric vehicles'
   }
 ];
 
@@ -105,32 +117,40 @@ const Amenities: React.FC = () => {
   return (
     <motion.section
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200"
+      className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Artisanal Background Background Elements */}
+      <div className="absolute top-0 right-0 w-64 h-64 opacity-5 pointer-events-none -translate-y-1/2 translate-x-1/2">
+        <svg viewBox="0 0 100 100" className="w-full h-full fill-accent-500">
+           <path d="M50 0 L100 50 L50 100 L0 50 Z" />
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Heading */}
         <motion.div
-          className="text-center mb-12 sm:mb-16 md:mb-20"
+          className="text-center mb-20 sm:mb-28"
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
+          <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              className="inline-block px-4 py-1 mb-6 text-[10px] font-bold tracking-[0.4em] uppercase text-accent-400 border-b border-accent-300/30"
+          >
+              World-Class Service
+          </motion.div>
           <motion.h1
-            className="text-2xl sm:text-3xl md:text-4xl font-serif font-light text-text-primary mb-4 sm:mb-6 tracking-tight"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-accent-500 mb-8 tracking-tight mithila-section-title"
           >
             Our Amenities
           </motion.h1>
-          <div className="text-center mb-6 sm:mb-12">
-            <h2 className="text-base sm:text-lg md:text-xl font-serif font-medium text-text-primary">
-              Experience Comfort & Convenience
-            </h2>
-            <div className="w-16 sm:w-24 h-1 bg-accent-400 mx-auto mt-3 sm:mt-6"></div>
-          </div>
+          <p className="text-lg sm:text-xl font-serif italic text-text-secondary max-w-2xl mx-auto">
+            Experience the perfect blend of tradition and modern comfort.
+          </p>
         </motion.div>
 
         {/* Amenities Grid */}
@@ -139,7 +159,7 @@ const Amenities: React.FC = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-10"
         >
           {amenities.map((amenity) => (
             <motion.div
@@ -147,22 +167,19 @@ const Amenities: React.FC = () => {
               variants={item}
               className="flex"
             >
-              <div className="hotel-card p-5 sm:p-6 w-full h-full flex flex-col items-center text-center group hover:shadow-lg transition-all">
+              <div className="mithila-card !p-8 w-full h-full flex flex-col items-center text-center transition-all duration-500 active:rotate-1 active:shadow-2xl">
                 <motion.div 
-                  className="bg-accent-400/10 p-4 rounded-full mb-4 group-hover:bg-accent-400/20 transition-colors"
-                  whileHover="hover"
+                  className="bg-accent-500/5 p-5 rounded-full mb-6 transition-all duration-500 mithila-border active:bg-accent-500 active:text-white"
                 >
-                  <motion.div 
-                    className="text-accent-500"
-
-                  >
+                  <div className="w-10 h-10 flex items-center justify-center">
                     {amenity.icon}
-                  </motion.div>
+                  </div>
                 </motion.div>
-                <h3 className="text-lg sm:text-xl font-serif font-semibold text-text-primary mb-2 sm:mb-3">
+                <h3 className="text-xl font-serif font-bold text-accent-500 mb-3 active:scale-105 transition-transform">
                   {amenity.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-text-secondary">
+                <div className="w-8 h-0.5 bg-accent-300 opacity-20 mb-4 transition-all duration-500" />
+                <p className="text-sm text-text-secondary leading-relaxed">
                   {amenity.description}
                 </p>
               </div>
@@ -172,29 +189,25 @@ const Amenities: React.FC = () => {
 
         {/* Footer/Closing */}
         <motion.div
-          className="mt-12 sm:mt-16 md:mt-20 text-center"
+          className="mt-20 sm:mt-28 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="divider mx-auto w-16 sm:w-24 h-1 bg-accent-400 mb-6 sm:mb-8"></div>
+          <div className="mithila-divider !w-24 mx-auto mb-10" />
           <motion.h3
-            className="text-lg sm:text-xl md:text-2xl font-serif font-medium text-text-primary mb-3 sm:mb-4"
+            className="text-2xl sm:text-3xl font-serif font-bold text-accent-500 mb-4 italic"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
           >
             Your Comfort, Our Priority
           </motion.h3>
           <motion.p
-            className="text-xs sm:text-sm md:text-base text-text-secondary max-w-3xl mx-auto px-2 sm:px-0"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-lg text-text-secondary max-w-3xl mx-auto italic"
           >
-            At Janakpur Inn, we're committed to providing all the amenities you need for a comfortable and memorable stay. 
-            If you need anything during your visit, our staff is always ready to assist you.
+            Every detail is curated to ensure your stay is as enriching as it is comfortable.
           </motion.p>
         </motion.div>
       </div>

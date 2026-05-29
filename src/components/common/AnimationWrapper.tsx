@@ -1,20 +1,22 @@
 import { motion } from 'framer-motion';
+import { slideUp } from '../../utils/animations';
 
 export const AnimationWrapper = ({
   children,
   className,
-  ...props
+  delay = 0,
 }: {
   children: React.ReactNode;
   className?: string;
+  delay?: number;
 }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    transition={{ duration: 0.5 }}
+    variants={slideUp}
+    initial="initial"
+    whileInView="animate"
+    viewport={{ once: true, margin: "-100px" }}
     className={className}
-    {...props}
+    transition={{ delay }}
   >
     {children}
   </motion.div>

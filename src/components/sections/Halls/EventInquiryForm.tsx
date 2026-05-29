@@ -67,12 +67,13 @@ export default function EventInquiryForm({ hallName }: { hallName: string }) {
             <option value="Workshop">Workshop/Seminar</option>
             <option value="Wedding">Wedding/Reception</option>
             <option value="Social Gathering">Social Gathering</option>
+            <option value="Pilgrimage Gathering">Pilgrimage Gathering</option>
             <option value="Other">Other</option>
           </select>
         </div>
       </div>
       
-      <button type="submit" className="w-full btn-primary py-3 rounded-md text-white font-medium hover:bg-accent-600 transition-colors">
+      <button type="submit" className="w-full btn-mithila">
         Submit Inquiry
       </button>
     </form>

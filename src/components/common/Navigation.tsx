@@ -16,8 +16,6 @@ const navigation = [
       { name: 'Videha Grand Hall', href: '/halls/videha' }
     ]
   },
-  { name: 'Gallery', href: '/gallery' },
-  { name: 'Find Us', href: '/find-us' },
   {
     name: 'Restaurant',
     href: '#',
@@ -38,10 +36,10 @@ export default function Navbar() {
   const handleSubMenuToggle = (menuName: string) => {
     if (menuName === 'Restaurant') {
       setRestaurantMenuOpen(!restaurantMenuOpen);
-      setEventsMenuOpen(false); // Close other menu
+      setEventsMenuOpen(false);
     } else if (menuName === 'Meetings & Events') {
       setEventsMenuOpen(!eventsMenuOpen);
-      setRestaurantMenuOpen(false); // Close other menu
+      setRestaurantMenuOpen(false);
     }
   };
 
@@ -52,116 +50,130 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/30 shadow-sm">
-      <nav className="flex items-center justify-between px-6 py-4 lg:px-8 lg:py-6" aria-label="Global">
-        {/* Logo */}
-        <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5 transition-transform hover:scale-105">
-            <span className="sr-only">JanakpurInn</span>
-            <img className="h-16 w-auto lg:h-20" src={logo} alt="JanakpurInn Logo" />
-          </a>
-        </div>
+    <div className="fixed inset-x-0 top-0 z-50 px-3 py-3 sm:px-4 sm:py-4 lg:px-8 pointer-events-none">
+      <header className="mx-auto max-w-7xl pointer-events-auto">
+        <nav 
+          className="flex items-center justify-between px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-white/80 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(161,35,18,0.1)] rounded-2xl lg:rounded-full" 
+          aria-label="Global"
+        >
+          {/* Logo */}
+          <div className="flex lg:flex-1">
+            <a href="/" className="-m-1.5 p-1.5 transition-all duration-300 hover:scale-105 active:scale-95">
+              <span className="sr-only">JanakpurInn</span>
+              <img className="h-10 w-auto sm:h-12 lg:h-14" src={logo} alt="JanakpurInn Logo" />
+            </a>
+          </div>
 
-        {/* Mobile menu button */}
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-lg p-2.5 text-text-primary hover:bg-primary-100 transition-colors"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
+          {/* Mobile menu button */}
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              className="-m-2.5 inline-flex items-center justify-center rounded-xl p-2.5 text-text-primary hover:bg-accent-500/10 transition-colors"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
 
-        {/* Desktop navigation */}
-        <div className="hidden lg:flex lg:items-center lg:gap-x-8">
-          {navigation.map((item) => (
-            <div key={item.name} className="relative group">
-              {item.subItems ? (
-                <>
-                  <button
-                    onClick={() => handleSubMenuToggle(item.name)}
-                    className="flex items-center gap-x-1 text-sm font-medium leading-6 text-text-primary hover:text-accent-500 transition-all duration-200 px-3 py-2 rounded-lg hover:bg-primary-100/50"
+          {/* Desktop navigation */}
+          <div className="hidden lg:flex lg:items-center lg:gap-x-1">
+            {navigation.map((item) => (
+              <div key={item.name} className="relative group">
+                {item.subItems ? (
+                  <div className="relative">
+                    <button
+                      onMouseEnter={() => handleSubMenuToggle(item.name)}
+                      onClick={() => handleSubMenuToggle(item.name)}
+                      className="flex items-center gap-x-1 text-sm font-medium leading-6 text-text-primary px-4 py-2 rounded-full hover:bg-accent-500/5 hover:text-accent-500 active:bg-accent-500/10 transition-all duration-300"
+                    >
+                      {item.name}
+                      <ChevronDownIcon className={`h-3 w-3 transition-transform duration-300 ${getMenuState(item.name) ? 'rotate-180' : ''}`} />
+                    </button>
+                    <AnimatePresence>
+                      {getMenuState(item.name) && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          onMouseLeave={() => {
+                            setRestaurantMenuOpen(false);
+                            setEventsMenuOpen(false);
+                          }}
+                          className="absolute left-1/2 -translate-x-1/2 top-full z-10 mt-3 w-60 rounded-2xl bg-white/95 backdrop-blur-md p-2 shadow-2xl ring-1 ring-black/5 border border-white/40"
+                        >
+                          {item.subItems.map((subItem) => (
+                            <a
+                              key={subItem.name}
+                              href={subItem.href}
+                              className="block rounded-xl px-4 py-3 text-sm font-medium text-text-primary hover:bg-accent-500 hover:text-white transition-all duration-200"
+                            >
+                              {subItem.name}
+                            </a>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="text-sm font-medium leading-6 text-text-primary px-4 py-2 rounded-full hover:bg-accent-500/5 hover:text-accent-500 active:bg-accent-500/10 transition-all duration-300"
                   >
                     {item.name}
-                    <ChevronDownIcon className={`h-4 w-4 transition-transform duration-200 ${getMenuState(item.name) ? 'rotate-180' : ''}`} />
-                  </button>
-                  <AnimatePresence>
-                    {getMenuState(item.name) && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                        transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="absolute -left-8 top-full z-10 mt-2 w-56 rounded-xl bg-white/95 backdrop-blur-sm p-2 shadow-lg ring-1 ring-gray-200/30 border border-gray-100"
-                      >
-                        {item.subItems.map((subItem) => (
-                          <a
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="block rounded-lg px-4 py-3 text-sm font-medium text-text-primary hover:bg-primary-100/70 hover:text-accent-500 transition-all duration-200"
-                          >
-                            {subItem.name}
-                          </a>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </>
-              ) : (
-                <a
-                  href={item.href}
-                  className="text-sm font-medium leading-6 text-text-primary hover:text-accent-500 transition-all duration-200 px-3 py-2 rounded-lg hover:bg-primary-100/50"
-                >
-                  {item.name}
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
 
-        {/* CTA Button */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a
-            href="/booking"
-            className="btn-primary text-sm font-medium leading-6 hover:scale-105 transition-transform duration-200"
-          >
-            Book Now
-          </a>
-        </div>
-      </nav>
+          {/* CTA Button */}
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4">
+            <a
+              href="https://www.bhumijaholidays.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium leading-6 text-accent-500 px-5 py-2 rounded-full border border-accent-300/30 hover:border-accent-500/50 hover:bg-accent-500/5 active:bg-accent-500/10 transition-all duration-300 flex items-center gap-1.5 font-sans"
+            >
+              Holidays
+              <span className="text-[10px] opacity-70">↗</span>
+            </a>
+            <a
+              href="/booking"
+              className="btn-mithila !min-h-[44px] !px-8 !py-3 !text-[10px] !tracking-[0.3em] !shadow-lg hover:!bg-accent-500 hover:!-translate-y-0.5 transition-all"
+            >
+              Book Now
+            </a>
+          </div>
+        </nav>
+      </header>
 
       {/* Mobile menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-gray-900/20 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-accent-500/20 backdrop-blur-md"
             />
             
-            {/* Mobile menu panel */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white/95 backdrop-blur-md px-6 py-6 sm:max-w-sm border-l border-gray-200/30"
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white/95 backdrop-blur-xl px-6 py-6 sm:max-w-sm border-l border-white/20 shadow-2xl"
             >
-              {/* Mobile menu header */}
-              <div className="flex items-center justify-between pb-6 border-b border-gray-200/30">
+              <div className="flex items-center justify-between pb-6 border-b border-accent-500/10">
                 <a href="/" className="-m-1.5 p-1.5">
                   <span className="sr-only">JanakpurInn</span>
-                  <img className="h-12 w-auto" src={logo} alt="JanakpurInn Logo" />
+                  <img className="h-10 w-auto" src={logo} alt="JanakpurInn Logo" />
                 </a>
                 <button
                   type="button"
-                  className="-m-2.5 rounded-lg p-2.5 text-text-primary hover:bg-primary-100 transition-colors"
+                  className="-m-2.5 rounded-xl p-2.5 text-text-primary hover:bg-accent-500/10 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span className="sr-only">Close menu</span>
@@ -169,25 +181,24 @@ export default function Navbar() {
                 </button>
               </div>
 
-              {/* Mobile menu content */}
-              <div className="mt-6 flow-root">
-                <div className="-my-6 divide-y divide-gray-200/30">
+              <div className="mt-8 flow-root">
+                <div className="-my-6 divide-y divide-accent-500/10">
                   <div className="space-y-2 py-6">
                     {navigation.map((item, index) => (
                       <motion.div
                         key={item.name}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1, duration: 0.3 }}
+                        transition={{ delay: index * 0.05 }}
                       >
                         {item.subItems ? (
-                          <div className="space-y-2">
+                          <div className="space-y-1">
                             <button
                               onClick={() => handleSubMenuToggle(item.name)}
-                              className="-mx-3 flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium leading-7 text-text-primary hover:bg-primary-100/70 hover:text-accent-500 transition-all duration-200"
+                              className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-base font-semibold leading-7 text-text-primary hover:bg-accent-500/10 transition-all duration-200"
                             >
                               {item.name}
-                              <ChevronDownIcon className={`h-4 w-4 transition-transform duration-200 ${getMenuState(item.name) ? 'rotate-180' : ''}`} />
+                              <ChevronDownIcon className={`h-4 w-4 transition-transform duration-300 ${getMenuState(item.name) ? 'rotate-180' : ''}`} />
                             </button>
                             <AnimatePresence>
                               {getMenuState(item.name) && (
@@ -195,14 +206,13 @@ export default function Navbar() {
                                   initial={{ opacity: 0, height: 0 }}
                                   animate={{ opacity: 1, height: 'auto' }}
                                   exit={{ opacity: 0, height: 0 }}
-                                  transition={{ duration: 0.2 }}
                                   className="space-y-1 pl-4 overflow-hidden"
                                 >
                                   {item.subItems.map((subItem) => (
                                     <a
                                       key={subItem.name}
                                       href={subItem.href}
-                                      className="block rounded-lg px-4 py-2.5 text-sm font-medium leading-7 text-text-secondary hover:bg-primary-100/70 hover:text-accent-500 transition-all duration-200"
+                                      className="block rounded-xl px-4 py-3 text-sm font-medium leading-7 text-text-secondary hover:bg-accent-500/10 hover:text-accent-500 transition-all duration-200"
                                       onClick={() => setMobileMenuOpen(false)}
                                     >
                                       {subItem.name}
@@ -215,7 +225,7 @@ export default function Navbar() {
                         ) : (
                           <a
                             href={item.href}
-                            className="-mx-3 block rounded-lg px-4 py-3 text-base font-medium leading-7 text-text-primary hover:bg-primary-100/70 hover:text-accent-500 transition-all duration-200"
+                            className="block rounded-xl px-4 py-3 text-base font-semibold leading-7 text-text-primary hover:bg-accent-500/10 transition-all duration-200"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {item.name}
@@ -225,16 +235,24 @@ export default function Navbar() {
                     ))}
                   </div>
                   
-                  {/* Mobile CTA */}
                   <motion.div
-                    className="py-6"
+                    className="py-6 space-y-3"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.3 }}
+                    transition={{ delay: 0.3 }}
                   >
                     <a
+                      href="https://www.bhumijaholidays.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-center py-3 text-sm font-semibold rounded-xl border border-accent-300/30 text-accent-500 hover:bg-accent-500/5 active:bg-accent-500/10 transition-all duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Holidays ↗
+                    </a>
+                    <a
                       href="/booking"
-                      className="btn-primary -mx-3 block text-center rounded-lg px-4 py-3 text-base font-medium leading-7"
+                      className="btn-mithila block text-center !py-5 !text-[11px] !tracking-[0.4em]"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       Book Now
@@ -246,6 +264,6 @@ export default function Navbar() {
           </Dialog>
         )}
       </AnimatePresence>
-    </header>
+    </div>
   );
 }

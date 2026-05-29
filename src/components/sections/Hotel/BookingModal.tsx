@@ -46,7 +46,7 @@ const initialFormData: FormData = {
   checkIn: '',
   checkOut: '',
   specialRequests: '',
-  paymentMethod: 'cash' as 'cash',
+  paymentMethod: 'cash',
 };
 
 const BookingModal: React.FC<BookingModalProps> = ({
@@ -370,19 +370,19 @@ const BookingModal: React.FC<BookingModalProps> = ({
                   />
                 </div>
 
-                <div className="flex justify-end space-x-4">
+                <div className="flex flex-col sm:flex-row justify-end gap-4 mt-8">
                   <button
                     type="button"
                     onClick={onClose}
                     disabled={isPending}
-                    className="px-6 py-2 border border-gray-200/50 rounded-lg text-text-primary hover:bg-primary-100/50 focus:outline-none focus:ring-2 focus:ring-accent-400/30 transition-colors"
+                    className="btn-mithila-light w-full sm:w-auto order-2 sm:order-1"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isPending}
-                    className="btn-primary px-8 py-3 disabled:opacity-70"
+                    className="btn-mithila w-full sm:w-auto order-1 sm:order-2 disabled:opacity-70"
                   >
                     {isPending ? 'Processing...' : 'Confirm Booking'}
                   </button>
@@ -408,7 +408,7 @@ const SuccessView = ({ onClose }: { onClose: () => void }) => (
     </p>
     <button
       onClick={onClose}
-      className="btn-primary px-8 py-3"
+      className="btn-mithila px-12 mx-auto"
     >
       Close
     </button>

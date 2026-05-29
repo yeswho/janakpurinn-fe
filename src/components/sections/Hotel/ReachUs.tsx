@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 const FindUs: React.FC = () => {
     const container = {
@@ -16,224 +17,159 @@ const FindUs: React.FC = () => {
     };
 
     return (
-        <motion.section
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200"
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+    >
+      {/* Decorative Background Motif */}
+      <div className="absolute top-1/2 right-0 w-96 h-96 opacity-5 pointer-events-none -translate-y-1/2 translate-x-1/3">
+        <svg viewBox="0 0 100 100" className="w-full h-full stroke-accent-500 fill-none">
+           {[...Array(6)].map((_, i) => (
+             <rect key={i} x={10+i*5} y={10+i*5} width={80-i*10} height={80-i*10} strokeWidth="0.5" transform={`rotate(${i*15} 50 50)`} />
+           ))}
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Heading */}
+        <motion.div
+          className="text-center mb-16 sm:mb-24"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
-            <div className="max-w-7xl mx-auto">
-                {/* Heading */}
-                <motion.div
-                    className="text-center mb-12 sm:mb-16 md:mb-20"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <motion.h1
-                        className="text-2xl sm:text-3xl md:text-4xl font-serif font-light text-text-primary mb-4 sm:mb-6 tracking-tight"
-                        initial={{ y: 30, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                    >
-                        Find Your Way to Janakpur Inn
-                    </motion.h1>
-                    <div className="text-center mb-6 sm:mb-12">
-                        <h2 className="text-base sm:text-lg md:text-xl font-serif font-medium text-text-primary">
-                          Ramanand Chowk, Janakpur
-                        </h2>
-                        <div className="w-16 sm:w-24 h-1 bg-accent-400 mx-auto mt-3 sm:mt-6"></div>
-                    </div>
-                </motion.div>
+          <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              className="inline-block px-4 py-1 mb-6 text-[10px] font-bold tracking-[0.4em] uppercase text-accent-400 border-b border-accent-300/30"
+          >
+              Our Location
+          </motion.div>
+          <motion.h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-accent-500 mb-8 tracking-tight mithila-section-title"
+          >
+            Find Your Way
+          </motion.h1>
+          <p className="text-lg sm:text-xl font-serif italic text-text-secondary max-w-2xl mx-auto">
+            Journey to the heart of Ramanand Chowk, where Mithila's soul resides.
+          </p>
+        </motion.div>
 
-                {/* Content */}
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12"
-                >
-                    {/* Map */}
-                    <motion.div
-                        variants={item}
-                        className="hotel-card overflow-hidden shadow-md hover:shadow-lg transition-all"
-                    >
-                        <div className="aspect-w-16 aspect-h-9">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3563.22171847403!2d85.91668091131955!3d26.737299867509265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ec4169194bb6bd%3A0xc733976a1e32e236!2sHotel%20JanakpurInn!5e0!3m2!1sen!2snp!4v1748835156128!5m2!1sen!2snp"
-                                width="100%"
-                                height="550"
-                                style={{ border: 0 }}
-                                allowFullScreen={true}
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                                className="rounded-lg"
-                            ></iframe>
-                        </div>
-                    </motion.div>
-
-                    {/* Contact Information */}
-                    <motion.div
-                        variants={item}
-                        className="flex flex-col justify-center"
-                    >
-                        <div className="hotel-card p-6 sm:p-8 shadow-md hover:shadow-lg transition-all h-full">
-                            <h2 className="text-xl sm:text-2xl font-serif font-medium text-text-primary mb-6">
-                                Contact Information
-                            </h2>
-
-                            <div className="space-y-6">
-                                {/* Address */}
-                                <motion.div
-                                    className="flex items-start"
-                                >
-                                    <motion.div
-                                        className="flex-shrink-0 bg-accent-100/20 p-3 rounded-lg text-accent-500"
-                                        whileHover="hover"
-                                    >
-                                        <motion.svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </motion.svg>
-                                    </motion.div>
-                                    <div className="ml-4">
-                                        <h3 className="text-lg font-medium text-text-primary">Address</h3>
-                                        <p className="mt-1 text-sm sm:text-base text-text-secondary">
-                                            Ramanand Chowk<br />
-                                            Janakpur Dham - 08<br />
-                                            Nepal
-                                        </p>
-                                    </div>
-                                </motion.div>
-
-                                {/* Phone */}
-                                <motion.div
-                                    className="flex items-start"
-                                >
-                                    <motion.div
-                                        className="flex-shrink-0 bg-accent-100/20 p-3 rounded-lg text-accent-500"
-                                        whileHover="hover"
-                                    >
-                                        <motion.svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                        </motion.svg>
-                                    </motion.div>
-                                    <div className="ml-4">
-                                        <h3 className="text-lg font-medium text-text-primary">Phone</h3>
-                                        <p className="mt-1 text-sm sm:text-base text-text-secondary">
-                                            +977 41-591317 / +977 41-591989<br />
-                                            +977 9765263291 / +977 9840149464
-                                        </p>
-                                    </div>
-                                </motion.div>
-
-                                {/* Email */}
-                                <motion.div
-                                    className="flex items-start"
-                                >
-                                    <motion.div
-                                        className="flex-shrink-0 bg-accent-100/20 p-3 rounded-lg text-accent-500"
-                                        whileHover="hover"
-                                    >
-                                        <motion.svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                        </motion.svg>
-                                    </motion.div>
-                                    <div className="ml-4">
-                                        <h3 className="text-lg font-medium text-text-primary">Email</h3>
-                                        <p className="mt-1 text-sm sm:text-base text-text-secondary">
-                                            janakpurinnhna2079@gmail.com
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            </div>
-
-                            {/* Transportation Options */}
-                            <div className="mt-10">
-                                <h3 className="text-lg font-medium text-text-primary mb-4">Transportation Options</h3>
-                                <ul className="space-y-3 text-sm sm:text-base text-text-secondary">
-                                    <motion.li
-                                        className="flex items-center"
-                                        whileHover={{ x: 5, cursor: "default" }}
-                                    >
-                                        <svg className="w-5 h-5 text-accent-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                        <span>4.5km from the airport</span>
-                                    </motion.li>
-                                    <motion.li
-                                        className="flex items-center"
-                                        whileHover={{ x: 5, cursor: "default" }}
-                                    >
-                                        <svg className="w-5 h-5 text-accent-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                        <span>1 min walk from Ramanand Chowk Bus Stand</span>
-                                    </motion.li>
-                                    <motion.li
-                                        className="flex items-center"
-                                        whileHover={{ x: 5, cursor: "default" }}
-                                    >
-                                        <svg className="w-5 h-5 text-accent-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                        <span>Free parking available</span>
-                                    </motion.li>
-                                </ul>
-                            </div>
-                        </div>
-                    </motion.div>
-                </motion.div>
-
-                {/* Footer/Closing */}
-                <motion.div
-                    className="mt-12 sm:mt-16 md:mt-20 text-center"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                    <div className="divider mx-auto w-16 sm:w-24 h-1 bg-accent-400 mb-6 sm:mb-8"></div>
-                    <motion.h3
-                        className="text-lg sm:text-xl md:text-2xl font-serif font-medium text-text-primary mb-3 sm:mb-4"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        We Look Forward to Welcoming You
-                    </motion.h3>
-                    <motion.p
-                        className="text-xs sm:text-sm md:text-base text-text-secondary max-w-3xl mx-auto px-2 sm:px-0"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                    >
-                        Whether you're arriving by plane, bus, or car, our convenient location makes it easy to reach us.
-                        Don't hesitate to contact us if you need any assistance with directions or transportation.
-                    </motion.p>
-                </motion.div>
+        {/* Content */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16"
+        >
+          {/* Map */}
+          <motion.div
+            variants={item}
+            className="mithila-card group !p-2 overflow-hidden shadow-2xl active:rotate-1 transition-all duration-500"
+          >
+            <div className="relative aspect-[4/3] lg:h-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3563.22171847403!2d85.91668091131955!3d26.737299867509265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ec4169194bb6bd%3A0xc733976a1e32e236!2sHotel%20JanakpurInn!5e0!3m2!1sen!2snp!4v1748835156128!5m2!1sen!2snp"
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: '450px' }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-sm transition-all duration-700"
+              ></iframe>
+              <div className="absolute inset-0 pointer-events-none border-[12px] border-white/10" />
             </div>
-        </motion.section>
-    );
+          </motion.div>
+
+          {/* Contact Information */}
+          <motion.div
+            variants={item}
+            className="flex flex-col justify-center"
+          >
+            <div className="mithila-card p-8 sm:p-12 h-full flex flex-col justify-center bg-white/50 backdrop-blur-sm active:shadow-2xl transition-all">
+              <h2 className="text-3xl font-serif font-bold text-accent-500 mb-10 relative inline-block">
+                Artisan Contact
+                <div className="absolute -bottom-2 left-0 w-1/3 h-1 bg-accent-300 opacity-20" />
+              </h2>
+
+              <div className="space-y-10">
+                {/* Address */}
+                <motion.div className="flex items-start active:bg-accent-500/5 p-2 rounded-lg transition-colors hover:bg-accent-500/5">
+                  <div className="flex-shrink-0 bg-accent-500/5 p-4 rounded-full text-accent-500 mithila-border">
+                    <MapPin className="w-6 h-6" />
+                  </div>
+                  <div className="ml-6">
+                    <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-accent-400 mb-2">Sanctuary Address</h3>
+                    <p className="text-lg font-serif text-text-primary leading-relaxed">
+                      Ramanand Chowk, Janakpur Dham - 08, Nepal
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Phone */}
+                <motion.div className="flex items-start active:bg-accent-500/5 p-2 rounded-lg transition-colors hover:bg-accent-500/5">
+                  <div className="flex-shrink-0 bg-accent-500/5 p-4 rounded-full text-accent-500 mithila-border">
+                    <Phone className="w-6 h-6" />
+                  </div>
+                  <div className="ml-6">
+                    <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-accent-400 mb-2">Voice of Hospitality</h3>
+                    <div className="text-lg font-serif text-text-primary leading-relaxed">
+                      <a href="tel:+97741591317" className="hover:text-accent-500 transition-colors">+977 41-591317</a><br />
+                      <a href="tel:+9779765263291" className="hover:text-accent-500 transition-colors">+977 9765263291</a><br />
+                      <a href="tel:+9779810685891" className="hover:text-accent-500 transition-colors">+977 9810685891</a><br />
+                      <a href="tel:+9779840149464" className="hover:text-accent-500 transition-colors">+977 9840149464</a>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Email */}
+                <motion.div className="flex items-start active:bg-accent-500/5 p-2 rounded-lg transition-colors hover:bg-accent-500/5">
+                  <div className="flex-shrink-0 bg-accent-500/5 p-4 rounded-full text-accent-500 mithila-border">
+                    <Mail className="w-6 h-6" />
+                  </div>
+                  <div className="ml-6">
+                    <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-accent-400 mb-2">Digital Parchment</h3>
+                    <p className="text-lg font-serif text-text-primary break-all">
+                      <a href="mailto:janakpurinnhna2079@gmail.com" className="hover:text-accent-500 transition-colors">janakpurinnhna2079@gmail.com</a>
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="mt-12 p-6 bg-accent-500/5 border border-accent-300/10 rounded-sm">
+                <p className="text-sm italic text-text-secondary leading-relaxed">
+                  "Whether by wing, wheel, or foot, your arrival is the most celebrated stroke in our daily tapestry."
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Footer/Closing */}
+        <motion.div
+          className="mt-20 sm:mt-28 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className="mithila-divider !w-32 mx-auto mb-12" />
+          <motion.h3
+            className="text-2xl sm:text-3xl font-serif font-bold text-accent-500 mb-6 italic"
+          >
+            The Gates of Janakpur Are Open
+          </motion.h3>
+          <p className="text-lg text-text-secondary max-w-3xl mx-auto italic">
+            Experience the hospitality that has defined this sacred land for centuries. We await your presence.
+          </p>
+        </motion.div>
+      </div>
+    </motion.section>
+  );
 };
 
 export default FindUs;

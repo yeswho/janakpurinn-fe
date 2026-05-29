@@ -372,7 +372,7 @@ const BookingPage = () => {
                                             <span className="text-accent-500">NPR {room.price}</span>
                                         </div>
                                         <p className="text-sm text-text-secondary mb-2">
-                                            Available: {room.availableRooms}
+                                            Total Available: {room.availableRooms}
                                         </p>
                                         <select
                                             value={selectedRooms.find(r => r.id === room.id)?.quantity || 0}
@@ -412,12 +412,12 @@ const BookingPage = () => {
                                 <button
                                     onClick={handleSubmit}
                                     disabled={isPending}
-                                    className="btn-primary w-full mt-4 py-3 disabled:opacity-50 flex items-center justify-center"
+                                    className="btn-mithila w-full mt-4"
                                 >
                                     {isPending && (
                                         <svg className="animate-spin h-5 w-5 mr-2 text-white" viewBox="0 0 24 24">
                                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V8z" />
                                         </svg>
                                     )}
                                     {isPending ? 'Processing...' : 'Complete Booking'}
@@ -453,7 +453,7 @@ const SuccessView = ({ bookingReference }: { bookingReference: string }) => (
             )}
             <a
                 href="/"
-                className="btn-primary px-8 py-3 inline-block"
+                className="btn-mithila inline-block px-12"
             >
                 Return to Home
             </a>
@@ -492,7 +492,7 @@ const ErrorView = ({ error }: { error: Error }) => (
                 <p className="mb-6 text-text-secondary">{error.message || 'Please try again later.'}</p>
                 <button
                     onClick={() => window.location.reload()}
-                    className="btn-primary"
+                    className="btn-mithila px-12"
                 >
                     Try Again
                 </button>

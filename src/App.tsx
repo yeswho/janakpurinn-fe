@@ -1,53 +1,53 @@
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Suspense, lazy } from 'react'
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom'
 
 import MainLayout from './components/layouts/MainLayout'
-
-import Rooms from './components/pages/Rooms'
 import Home from './components/pages/Home'
-import About from './components/pages/About'
-import Gallery from './components/pages/Gallery'
 import Menu from './components/pages/Menu'
 import Reservation from './components/pages/Reservation'
-import ResturantGallery from './components/pages/ResturantGallery'
-import FindUs from './components/pages/FindUs'
-import Contact from './components/pages/Contact'
-import Booking from './components/sections/Hotel/Booking'
-import PoliciesPage from './components/pages/Policies'
 
-// Import new Hall pages
-import VaidehiBoardroom from './components/pages/Halls/VaidehiBoardroom';
-import VidehaGrandHall from './components/pages/Halls/VidehaGrandHall';
+// Lazy load pages for code splitting
+const Rooms = lazy(() => import('./components/pages/Rooms'))
+const About = lazy(() => import('./components/pages/About'))
+const ResturantGallery = lazy(() => import('./components/pages/ResturantGallery'))
+const Contact = lazy(() => import('./components/pages/Contact'))
+const Booking = lazy(() => import('./components/sections/Hotel/Booking'))
+const PoliciesPage = lazy(() => import('./components/pages/Policies'))
 
-// External redirect component for /admin
-const AdminRedirect = () => {
-  // Redirect immediately to external URL
-  window.location.href = 'https://checkin-log-fe.vercel.app/';
-  return null;
-}
+// Lazy load Hall pages
+const VaidehiBoardroom = lazy(() => import('./components/pages/Halls/VaidehiBoardroom'))
+const VidehaGrandHall = lazy(() => import('./components/pages/Halls/VidehaGrandHall'))
+
+// Simple Loading Fallback
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-[60vh]">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent-500"></div>
+  </div>
+)
 
 export default function App() {
   const location = useLocation()
 
   return (
-    <Routes location={location} key={location.pathname}>
-      <Route path="/" element={<MainLayout />}>
-        <Route index element={<Home/>} />
-        <Route path="rooms" element={<Rooms />} />
-        <Route path="about" element={<About />} />
-        <Route path="gallery" element={<Gallery />} />
-        <Route path="menu" element={<Menu />} />
-        <Route path="reservation" element={<Reservation />} />
-        <Route path="restaurant-gallery" element={<ResturantGallery />} />
-        <Route path="find-us" element={<FindUs/>} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="/booking" element={<Booking />} />
-        <Route path="/policies" element={<PoliciesPage />} />
-        {/* New Hall Routes */}
-        <Route path="halls/vaidehi" element={<VaidehiBoardroom />} />
-        <Route path="halls/videha" element={<VidehaGrandHall />} />
-      </Route>
-      {/* External redirect for /admin */}
-      <Route path="/admin" element={<AdminRedirect />} />
-    </Routes>
+    <Suspense fallback={<PageLoader />}>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home/>} />
+          <Route path="rooms" element={<Rooms />} />
+          <Route path="about" element={<About />} />
+          <Route path="gallery" element={<Navigate to="/about" replace />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="reservation" element={<Reservation />} />
+          <Route path="restaurant-gallery" element={<ResturantGallery />} />
+          <Route path="find-us" element={<Navigate to="/contact" replace />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="/booking" element={<Booking />} />
+          <Route path="/policies" element={<PoliciesPage />} />
+          {/* New Hall Routes */}
+          <Route path="halls/vaidehi" element={<VaidehiBoardroom />} />
+          <Route path="halls/videha" element={<VidehaGrandHall />} />
+        </Route>
+      </Routes>
+    </Suspense>
   )
 }

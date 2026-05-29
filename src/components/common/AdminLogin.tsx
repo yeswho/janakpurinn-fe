@@ -65,7 +65,7 @@ export default function LoginPage() {
           <div>
             <button
               type="submit"
-              className="btn-primary w-full flex justify-center py-2 px-4"
+              className="btn-mithila w-full"
               disabled={loginMutation.isPending}
             >
               {loginMutation.isPending ? 'Logging in...' : 'Login'}

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import AdminBookingsPage from '../common/AdminBookingPage'
 
-export default function Contact() {
+export default function AdminPage() {
   return (
     <motion.div
       initial={{ opacity: 0 }}

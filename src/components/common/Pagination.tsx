@@ -17,7 +17,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
           onClick={() => onPageChange(currentPage - 1)}
           disabled={!canGoPrev}
           className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${
-            canGoPrev ? 'bg-white text-gray-700 hover:bg-gray-50' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+            canGoPrev ? 'bg-white text-gray-700 active:bg-gray-50' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
           }`}
         >
           Previous
@@ -26,7 +26,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
           onClick={() => onPageChange(currentPage + 1)}
           disabled={!canGoNext}
           className={`ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${
-            canGoNext ? 'bg-white text-gray-700 hover:bg-gray-50' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+            canGoNext ? 'bg-white text-gray-700 active:bg-gray-50' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
           }`}
         >
           Next
@@ -46,7 +46,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
               onClick={() => onPageChange(currentPage - 1)}
               disabled={!canGoPrev}
               className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium ${
-                canGoPrev ? 'text-gray-500 hover:bg-gray-50' : 'text-gray-300 cursor-not-allowed'
+                canGoPrev ? 'text-gray-500 active:bg-gray-50' : 'text-gray-300 cursor-not-allowed'
               }`}
             >
               <span className="sr-only">Previous</span>
@@ -72,7 +72,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                   className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
                     pageNum === currentPage
                       ? 'z-10 bg-accent-500 border-accent-500 text-white'
-                      : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                      : 'bg-white border-gray-300 text-gray-500 active:bg-gray-50'
                   }`}
                 >
                   {pageNum}
@@ -84,7 +84,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
               onClick={() => onPageChange(currentPage + 1)}
               disabled={!canGoNext}
               className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium ${
-                canGoNext ? 'text-gray-500 hover:bg-gray-50' : 'text-gray-300 cursor-not-allowed'
+                canGoNext ? 'text-gray-500 active:bg-gray-50' : 'text-gray-300 cursor-not-allowed'
               }`}
             >
               <span className="sr-only">Next</span>

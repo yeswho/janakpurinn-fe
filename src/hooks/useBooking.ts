@@ -1,5 +1,6 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import config from '../config';
+import type { RoomType } from './useRooms';
 
 export interface BookingType {
   id: number;
@@ -57,9 +58,9 @@ const createBooking = async (bookingData: BookingPayload): Promise<{
     throw new Error('Failed to fetch room prices');
   }
 
-  const rooms = await roomsResponse.json();
+  const rooms: RoomType[] = await roomsResponse.json();
   const calculatedTotal = bookingData.rooms.reduce((sum, room) => {
-    const roomInfo = rooms.find((r: any) => r.id === room.id);
+    const roomInfo = rooms.find((r) => r.id === room.id);
     return sum + (roomInfo?.price || 0) * room.quantity;
   }, 0);
 

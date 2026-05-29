@@ -50,6 +50,7 @@ const ContactUs = () => {
       "+977 41-591317",
       "+977 41-591989",
       "+977 9765263291",
+      "+977 9810685891",
       "+977 9840149464"
     ],
     email: "janakpurinnhna2079@gmail.com"
@@ -261,7 +262,7 @@ const ContactUs = () => {
                 </p>
                 <button
                   onClick={() => setSubmitSuccess(false)}
-                  className="btn-primary px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base"
+                  className="btn-mithila px-12 mx-auto"
                 >
                   Send Another Message
                 </button>
@@ -359,7 +360,7 @@ const ContactUs = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-primary px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base disabled:opacity-70"
+                    className="btn-mithila w-full sm:w-auto disabled:opacity-70"
                   >
                     {isSubmitting ? (
                       <>

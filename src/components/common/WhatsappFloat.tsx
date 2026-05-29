@@ -10,7 +10,7 @@ const WhatsAppFloat = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Chat with us on WhatsApp"
-                className="flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-lg transition-transform hover:scale-110 hover:shadow-xl animate-bounce hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                className="flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-lg transition-all hover:scale-110 hover:shadow-xl active:scale-110 active:shadow-2xl animate-bounce hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
             >
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
@@ -18,7 +18,7 @@ const WhatsAppFloat = () => {
                     className="w-7 h-7"
                 />
             </a>
-            <div className="absolute right-16 bottom-1/2 translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black text-white text-xs px-3 py-1 rounded-md shadow-lg">
+            <div className="absolute right-16 bottom-1/2 translate-y-1/2 opacity-100 sm:opacity-0 sm:group-active:opacity-100 transition-opacity bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-sm shadow-lg whitespace-nowrap pointer-events-none">
                 WhatsApp
             </div>
         </div>

@@ -8,8 +8,8 @@ import { hallSchemas } from '../../../config/seo';
 export default function VidehaGrandHall() {
   return (
     <SEOWrapper 
-      title="Videha Grand Hall" 
-      description="Host your grand weddings and conferences at the Videha Grand Hall in Janakpur Inn. Capacity 120+ guests."
+      title="Videha Grand Hall | Group Stay & Self-Cooking in Janakpur Dham" 
+      description="Premier group stay and event venue in Janakpur Dham. Ideal for spiritual yatris, pilgrimage tour groups (Ramayana Circuit), and large families. Features a dedicated pure veg kitchen (Rasoi) for self-cooking, bhajan-kirtan sound system, AC, and comfort for 120+ guests."
       canonicalUrl="/halls/videha"
       schema={hallSchemas.videhaGrandHall}
     >

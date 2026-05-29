@@ -69,22 +69,5 @@ export const roomData: RoomType[] = [
       ]
     },
     availableRooms: 8
-  },
-  {
-    id: 'nac-001',
-    title: 'Classic Room',
-    category: 'Non A/C',
-    description: 'Budget-friendly option with ceiling fan and natural ventilation. Perfect for pilgrims and travelers who prefer traditional cooling methods.',
-    price: 4500,
-    size: '250 sq.ft',
-    capacity: '2 Adults',
-    amenities: ['Twin beds', 'Ceiling fan', 'Free WiFi', 'Daily housekeeping'],
-    images: {
-      main: '/images/rooms/non-ac.jpg',
-      gallery: [
-        '/images/rooms/non-ac-1.jpg'
-      ]
-    },
-    availableRooms: 5
   }
 ];

@@ -76,7 +76,7 @@ const RoomCartModal: React.FC<RoomCartModalProps> = ({
               <span className="font-medium text-accent-500">NPR {room.price.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-text-secondary">Available:</span>
+              <span className="text-text-secondary">Total Available:</span>
               <span>{room.availableRooms} rooms</span>
             </div>
           </div>

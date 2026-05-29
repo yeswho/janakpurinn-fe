@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { useState } from 'react';
-import { useAdminBookings, useUpdateBookingStatus } from '../../hooks/useAdminBooking';
+import { useAdminBookings, useUpdateBookingStatus, type Booking } from '../../hooks/useAdminBooking';
 import Pagination from './Pagination';
 import {
     Modal,
@@ -10,7 +10,7 @@ import {
     ModalFooter,
     useDisclosure,
     Button
-} from "@nextui-org/react";
+} from "@heroui/react";
 
 export default function AdminBookingsPage() {
     const [page, setPage] = useState(1);
@@ -29,9 +29,9 @@ export default function AdminBookingsPage() {
     };
 
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [selectedBooking, setSelectedBooking] = useState<any>(null);
+    const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
 
-    const handleBookingClick = (booking: any) => {
+    const handleBookingClick = (booking: Booking) => {
         setSelectedBooking(booking);
         onOpen();
     };
@@ -347,7 +347,7 @@ export default function AdminBookingsPage() {
                                                 <h3 className="font-bold text-sm sm:text-base text-gray-800">Room Details</h3>
                                             </div>
                                             <div className="grid gap-2 sm:gap-3">
-                                                {selectedBooking.rooms.map((room: any) => (
+                                                {selectedBooking.rooms.map((room) => (
                                                     <div key={room.id} className="bg-white/60 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/50">
                                                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                                                             <div className="flex-1">

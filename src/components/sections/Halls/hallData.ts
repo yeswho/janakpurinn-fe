@@ -30,12 +30,12 @@ export const halls: Record<string, HallData> = {
     id: "videha",
     name: "Videha Grand Hall",
     capacity: "120+ Guests",
-    overview: "Our largest event space, the Videha Grand Hall is a majestic venue designed for grand celebrations. Whether it's a wedding reception or a large corporate conference, this hall offers the space and grandeur needed for unforgettable events.",
+    overview: "A majestic, multi-purpose venue designed for grand celebrations and spiritual gatherings. Videha Grand Hall is Janakpur's premier space for hosting large pilgrimage groups, holy yatra excursions, bhajan-kirtan sessions, and community satsangs. Keeping in mind the sacred traditions of yatris traveling across India and Nepal, the hall features a dedicated, fully-equipped Pure Vegetarian Kitchen (Rasoi) available for self-cooking, allowing groups to prepare clean, custom, and traditional satvik meals. With a capacity of 120+ guests, it blends the communal warmth of a traditional dharamshala with modern hotel comforts, featuring air conditioning, clean washrooms, hot water, and high-quality sound systems ideal for spiritual chanting.",
     images: ["/GrandHall1.jpeg", "/GrandHall2.jpeg"],
-    eventTypes: ["Wedding Receptions", "Large Banquets", "Corporate Conferences", "Gala Dinners"],
-    amenities: ["High-speed Wi-Fi", "Premium Audio System", "Stage Setup", "Air Conditioning"],
+    eventTypes: ["Pilgrimage & Yatra Group Stay", "Satsang, Bhajan & Kirtan Gatherings", "Spiritual & Cultural Events", "Wedding Receptions & Banquets", "Corporate Conferences"],
+    amenities: ["Pure Veg Kitchen (Rasoi) for Self-Cooking", "Bhajan, Kirtan & Chanting Sound System", "Spacious Group Dining Area (Bhandara)", "24/7 Hot Water & Power Backup", "Air Conditioning & Ventilation", "Clean Washrooms & Showers", "High-speed Wi-Fi", "Stage & Presentation Setup"],
     seatingArrangements: ["Banquet", "Theater", "Reception"],
     priceRange: "Contact us for custom packages",
-    cateringNote: "Full banquet catering available, featuring authentic Mithila cuisine and international favorites."
+    cateringNote: "We offer full in-house pure vegetarian catering featuring authentic Mithila cuisine. Alternatively, we proudly provide a dedicated, fully-equipped Pure Vegetarian Kitchen (Rasoi) with utilities and cooking space for groups preferring self-cooking."
   }
 };

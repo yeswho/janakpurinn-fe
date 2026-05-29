@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/admin",
+      "destination": "https://checkin-log-fe.vercel.app/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]

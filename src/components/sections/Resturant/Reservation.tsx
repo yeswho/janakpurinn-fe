@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import RestaurantReservation from '../Hotel/ResturantReservation';
 
 const Reservation = () => {
-  const [isHovered, setIsHovered] = useState(false);
   const [isReservationOpen, setIsReservationOpen] = useState(false);
 
   const restaurantData = {
@@ -48,9 +47,9 @@ const Reservation = () => {
       <div className="absolute inset-0 z-0">
         <div
           className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center"
-          style={{ filter: 'brightness(0.85) saturate(0.9)' }}
+          style={{ filter: 'brightness(0.6) saturate(0.8)' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-100/40 via-primary-50/60 to-accent-300/20" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       <div className="relative z-10 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
@@ -63,7 +62,7 @@ const Reservation = () => {
             transition={{ duration: 0.6 }}
           >
             <motion.h1
-              className="text-2xl sm:text-3xl md:text-4xl font-serif font-light text-white mb-4 sm:mb-6 tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-4 sm:mb-6 tracking-tight drop-shadow-2xl"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -71,10 +70,10 @@ const Reservation = () => {
               Restaurant Reservations
             </motion.h1>
             <div className="text-center mb-6 sm:mb-12">
-              <h2 className="text-base sm:text-lg md:text-xl font-serif font-medium text-white">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-serif font-semibold text-accent-300 drop-shadow-lg">
                 Dine With Us
               </h2>
-              <div className="w-16 sm:w-24 h-1 bg-accent-400 mx-auto mt-3 sm:mt-6"></div>
+              <div className="w-16 sm:w-24 h-1 bg-accent-400 mx-auto mt-4 sm:mt-6 shadow-lg"></div>
             </div>
           </motion.div>
 
@@ -83,7 +82,7 @@ const Reservation = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="hotel-card max-w-none p-6 sm:p-8"
+            className="hotel-card max-w-4xl mx-auto p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-t-4 border-accent-400"
           >
             <motion.div 
               variants={item}
@@ -171,11 +170,8 @@ const Reservation = () => {
               className="text-center"
             >
               <motion.button
-                className={`btn-primary inline-flex items-center space-x-2 transform transition-all duration-300 ${isHovered ? 'scale-105' : ''}`}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                className="btn-mithila inline-flex items-center gap-3 px-12"
                 onClick={() => setIsReservationOpen(true)}
-                whileHover={{ scale: 1.05 }}
               >
                 <Utensils className="w-5 h-5" />
                 <span>Make a Reservation</span>

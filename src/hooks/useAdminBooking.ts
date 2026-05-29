@@ -15,6 +15,7 @@ export interface Booking {
   total_amount: number;
   status: 'pending' | 'confirmed' | 'cancelled' | 'completed';
   created_at: string;
+  updated_at?: string;
   rooms: {
     id: string;
     quantity: number;

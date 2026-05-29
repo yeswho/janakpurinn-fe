@@ -93,7 +93,7 @@ const RestaurantReservation: React.FC<RestaurantReservationProps> = ({ isOpen, o
               </p>
               <button
                 onClick={onClose}
-                className="btn-primary px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base"
+                className="btn-mithila px-12 mx-auto"
               >
                 Close
               </button>
@@ -209,19 +209,19 @@ const RestaurantReservation: React.FC<RestaurantReservationProps> = ({ isOpen, o
                 </div>
               </div>
 
-              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-3">
+              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-end gap-3">
                 <button
                   type="button"
                   onClick={onClose}
                   disabled={isSubmitting}
-                  className="px-6 py-2 border border-gray-200/50 rounded-lg text-sm sm:text-base text-text-primary hover:bg-primary-100/50 transition-colors"
+                  className="btn-mithila-light w-full sm:w-auto order-2 sm:order-1"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary px-6 py-2 text-sm sm:text-base disabled:opacity-70 flex items-center justify-center"
+                  className="btn-mithila w-full sm:w-auto order-1 sm:order-2 disabled:opacity-70 flex items-center justify-center"
                 >
                   {isSubmitting ? (
                     <>

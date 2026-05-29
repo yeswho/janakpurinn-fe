@@ -6,7 +6,7 @@ import WhatsAppFloat from '../common/WhatsappFloat';
 
 export default function MainLayout() {
   return (
-    <div className="min-h-screen flex flex-col px-1 pt-25">
+    <div className="min-h-screen flex flex-col px-1 pt-20 lg:pt-24">
       <Header />
       <main className="flex-1">
         <Outlet />

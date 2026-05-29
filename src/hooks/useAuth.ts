@@ -68,7 +68,7 @@ export const useAdminUser = () => {
         }
 
         return JSON.parse(storedUser);
-      } catch (error) {
+      } catch {
         localStorage.removeItem('authToken');
         localStorage.removeItem('adminUser');
         return null;

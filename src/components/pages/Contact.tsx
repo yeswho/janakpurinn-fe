@@ -1,17 +1,19 @@
-import ContactUs from '../sections/Hotel/Contact'
+import ContactUs from '../sections/Hotel/Contact';
+import ReachUs from '../sections/Hotel/ReachUs';
 import SEOWrapper from '../common/SEOWrapper';
 import { AnimationWrapper } from '../common/AnimationWrapper';
 
 export default function Contact() {
   return (
     <SEOWrapper 
-      title="Contact Us" 
-      description="Get in touch with Janakpur Inn for inquiries, bookings, or feedback. We are located near Ramanand Chowk, Janakpur."
+      title="Contact & Find Us" 
+      description="Get in touch with Janakpur Inn or locate us on the map. We are located near Ramanand Chowk, Janakpur."
       canonicalUrl="/contact"
     >
       <AnimationWrapper>
-        <ContactUs/>
+        <ContactUs />
+        <ReachUs />
       </AnimationWrapper>
     </SEOWrapper>
-  )
+  );
 }
