@@ -7,6 +7,22 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/api/rooms",
+      "destination": "https://janakpurinn-be-production.up.railway.app/api/rooms"
+    },
+    {
+      "source": "/api/booking",
+      "destination": "https://janakpurinn-be-production.up.railway.app/api/booking"
+    },
+    {
+      "source": "/api/auth/:path*",
+      "destination": "https://janakpurinn-be-production.up.railway.app/api/auth/:path*"
+    },
+    {
+      "source": "/api/admin/:path*",
+      "destination": "https://janakpurinn-be-production.up.railway.app/api/admin/:path*"
+    },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
