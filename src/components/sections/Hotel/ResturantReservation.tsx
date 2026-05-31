@@ -52,7 +52,7 @@ const RestaurantReservation: React.FC<RestaurantReservationProps> = ({ isOpen, o
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 20, opacity: 0 }}
         transition={{ type: 'spring', damping: 25 }}
-        className="hotel-card w-full max-w-md sm:max-w-lg bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl overflow-hidden shadow-xl"
+        className="hotel-card w-full max-w-md sm:max-w-lg max-h-[90vh] overflow-y-auto bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6 sm:p-8">

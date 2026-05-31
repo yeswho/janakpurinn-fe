@@ -127,7 +127,7 @@ const Rooms: React.FC = () => {
           <motion.div
             key={room.id}
             variants={item}
-            className="group relative max-w-5xl mx-auto"
+            className="group relative max-w-5xl mx-auto mithila-card !p-6 sm:!p-10 shadow-md hover:shadow-xl transition-all duration-500"
           >
             <div className="flex flex-col">
               {/* 1. Compact Header */}

@@ -161,7 +161,7 @@ const AboutUs: React.FC = () => {
         </div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -178,7 +178,7 @@ const AboutUs: React.FC = () => {
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-full h-56 sm:h-64 object-cover"
+                  className="w-full h-56 sm:h-64 object-cover object-top"
                 />
               </div>
               <div className="px-2 pb-4 text-center">

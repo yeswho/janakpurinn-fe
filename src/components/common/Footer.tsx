@@ -42,17 +42,17 @@ export default function Footer() {
             <div className="text-center lg:text-left">
               <h3 className="text-xs sm:text-sm font-serif font-bold uppercase tracking-widest text-accent-500">Quick Links</h3>
               <ul className="mt-6 space-y-4">
-                <li><a href="/rooms" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2 block lg:inline">Our Rooms</a></li>
-                <li><a href="/about" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2 block lg:inline">The Story</a></li>
-                <li><a href="/menu" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2 block lg:inline">Dining Menu</a></li>
-                <li><a href="/reservation" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2 block lg:inline">Book a Table</a></li>
+                <li><a href="/rooms" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2.5 block lg:inline">Our Rooms</a></li>
+                <li><a href="/about" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2.5 block lg:inline">The Story</a></li>
+                <li><a href="/menu" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2.5 block lg:inline">Dining Menu</a></li>
+                <li><a href="/reservation" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2.5 block lg:inline">Book a Table</a></li>
               </ul>
             </div>
             <div className="text-center lg:text-left">
               <h3 className="text-xs sm:text-sm font-serif font-bold uppercase tracking-widest text-accent-500">Information</h3>
               <ul className="mt-6 space-y-4">
-                <li><a href="/policies" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2 block lg:inline">Policies</a></li>
-                <li><a href="/contact" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2 block lg:inline">Contact</a></li>
+                <li><a href="/policies" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2.5 block lg:inline">Policies</a></li>
+                <li><a href="/contact" className="text-sm font-medium text-text-secondary active:text-accent-500 transition-colors py-2.5 block lg:inline">Contact</a></li>
               </ul>
             </div>
           </div>

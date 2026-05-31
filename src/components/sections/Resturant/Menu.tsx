@@ -50,10 +50,10 @@ const Menu = () => {
             <div className="space-y-16">
                 {menuSections.map((section) => (
                     <div key={section.title} className="bg-white rounded-xl shadow-sm border border-accent-100 overflow-hidden">
-                        <div className="bg-accent-50 px-8 py-6 border-b border-accent-100">
-                            <h2 className="text-3xl font-serif font-bold text-accent-700">{section.title}</h2>
+                        <div className="bg-accent-50 px-4 sm:px-8 py-4 sm:py-6 border-b border-accent-100">
+                            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-accent-700">{section.title}</h2>
                         </div>
-                        <div className="p-8">
+                        <div className="p-4 sm:p-8">
                             <div className="grid md:grid-cols-2 gap-x-16 gap-y-12">
                                 {section.subsections.map((sub) => (
                                     <div key={sub.title} className="flex flex-col">

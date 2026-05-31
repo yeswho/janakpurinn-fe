@@ -232,8 +232,8 @@ const BookingPage = () => {
                 <div className="w-24 h-1 bg-accent-400 mx-auto mt-6"></div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                <div className="lg:col-span-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="md:col-span-1 lg:col-span-2">
                     <div className="hotel-card p-6 mb-8">
                         <h2 className="text-xl font-serif font-semibold mb-4">Personal Information</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -351,8 +351,8 @@ const BookingPage = () => {
                     </div>
                 </div>
 
-                <div className="lg:col-span-2">
-                    <div className="hotel-card p-6 sticky top-4">
+                <div className="md:col-span-1 lg:col-span-2">
+                    <div className="hotel-card p-6 md:sticky md:top-4">
                         <h2 className="text-xl font-serif font-semibold mb-4">Select Rooms</h2>
                         <a
                             href="/rooms"

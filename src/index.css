@@ -48,7 +48,7 @@
 @layer components {
   /* Ultra-Elegant Filigree Border */
   .mithila-card {
-    @apply bg-white/60 backdrop-blur-xl relative p-8 sm:p-12 rounded-sm shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] transition-all duration-700;
+    @apply bg-white/60 backdrop-blur-xl relative p-6 sm:p-12 rounded-sm shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] transition-all duration-700;
     border: 1px solid oklch(82% 0.06 85 / 0.3); /* Thin gold hair-line */
   }
 
@@ -92,7 +92,7 @@
   }
 
   .mithila-divider {
-    @apply h-px w-full my-16 sm:my-24 bg-gradient-to-r from-transparent via-accent-300/30 to-transparent;
+    @apply h-px w-full my-10 sm:my-24 bg-gradient-to-r from-transparent via-accent-300/30 to-transparent;
   }
 
   /* Floating glass container */
@@ -107,7 +107,7 @@
 
   .look-around-swiper .swiper-button-prev,
   .look-around-swiper .swiper-button-next {
-    @apply !text-text-primary !bg-white !shadow-sm !rounded-full !w-12 !h-12 !flex !items-center !justify-center !transition-all !opacity-100 !border !border-gray-100 active:bg-text-primary active:!text-white;
+    @apply !text-text-primary !bg-white !shadow-sm !rounded-full !w-12 !h-12 hidden sm:!flex !items-center !justify-center !transition-all !opacity-100 !border !border-gray-100 active:bg-text-primary active:!text-white;
     --swiper-navigation-size: 20px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;

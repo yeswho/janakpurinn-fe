@@ -20,10 +20,10 @@ export default function Hero() {
             {/* Background Texture/Pattern */}
             <div className="absolute inset-0 -z-10 opacity-5" style={{ backgroundImage: 'var(--mithila-pattern)', backgroundSize: '40px 40px' }} />
 
-            <div className="flex flex-col md:flex-row min-h-screen pt-20 lg:pt-24">
+            <div className="flex flex-col md:flex-row min-h-[calc(100vh-6rem)] md:min-h-screen pt-20 lg:pt-24">
                 {/* Image Slider */}
                 <motion.div
-                    className="w-full md:w-1/2 relative h-[400px] md:h-auto"
+                    className="w-full md:w-1/2 relative h-[280px] sm:h-[400px] md:h-auto"
                     variants={fadeIn}
                     initial="initial"
                     animate="animate"
@@ -31,7 +31,7 @@ export default function Hero() {
                     <Swiper
                         slidesPerView={1}
                         loop
-                        pagination={{ clickable: true }}
+                        pagination={{ clickable: true, dynamicBullets: true }}
                         navigation
                         modules={[Autoplay, Pagination, Navigation]}
                         autoplay={prefersReducedMotion ? false : { delay: 5000, disableOnInteraction: false }}
@@ -53,9 +53,9 @@ export default function Hero() {
                         ))}
                     </Swiper>
                 </motion.div>
-
+ 
                 {/* Text Content */}
-                <div className="w-full md:w-1/2 flex items-center justify-center px-6 sm:px-10 md:px-12 lg:px-20 py-16 md:py-24 bg-white/40 backdrop-blur-sm">
+                <div className="w-full md:w-1/2 flex items-center justify-center px-6 sm:px-10 md:px-12 lg:px-20 py-10 md:py-24 bg-white/40 backdrop-blur-sm">
                     <motion.div
                         className="max-w-xl text-center md:text-left"
                         variants={slideUp}
@@ -66,21 +66,21 @@ export default function Hero() {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ ...transitionSmooth, delay: 0.2 }}
-                            className="inline-block px-5 py-2 mb-8 text-xs font-bold tracking-[0.3em] uppercase text-accent-500 bg-accent-500/5 border-y border-accent-300/30"
+                            className="inline-block px-5 py-2 mb-6 sm:mb-8 text-xs font-bold tracking-[0.3em] uppercase text-accent-500 bg-accent-500/5 border-y border-accent-300/30"
                         >
                             Authentic Mithila Hospitality
                         </motion.div>
                         
-                        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-text-primary leading-[1.05] mithila-section-title">
+                        <h1 className="text-3xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-text-primary leading-[1.05] mithila-section-title">
                             Magic of <br />
                             <span className="text-accent-500 italic">Janakpur Inn</span>
                         </h1>
                         
-                        <p className="mt-10 text-xl sm:text-2xl leading-relaxed text-text-secondary font-medium italic">
+                        <p className="mt-6 sm:mt-10 text-lg sm:text-2xl leading-relaxed text-text-secondary font-medium italic">
                             Where ancient tradition meets modern luxury.
                         </p>
 
-                        <div className="mt-14 flex flex-col sm:flex-row gap-8 justify-center md:justify-start">
+                        <div className="mt-8 sm:mt-14 flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center md:justify-start">
                             <motion.a
                                 whileHover={{ y: -5 }}
                                 whileTap={{ scale: 0.95 }}
@@ -93,7 +93,7 @@ export default function Hero() {
                             <motion.a
                                 href="/rooms"
                                 whileHover={{ x: 10 }}
-                                className="text-lg font-bold text-accent-400 hover:text-accent-500 transition-colors inline-flex items-center justify-center gap-3"
+                                className="text-base sm:text-lg font-bold text-accent-400 hover:text-accent-500 transition-colors inline-flex items-center justify-center gap-3"
                                 aria-label="Explore rooms"
                             >
                                 <span className="border-b-2 border-accent-300 pb-1">Explore Rooms</span>

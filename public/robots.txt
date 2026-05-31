@@ -1,0 +1,173 @@
+# SEO & AEO Optimized robots.txt for Janakpur Inn
+# Target domain: https://janakpurinn.com
+
+# ----------------------------------------------------
+# 1. AI Search, LLM & Browser Crawlers (Explicitly Allowed)
+# ----------------------------------------------------
+
+User-agent: Novellum
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Anchor Browser
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Amazonbot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Applebot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: archive.org_bot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: bingbot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Bytespider
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: CCBot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: ChatGPT-User
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: ClaudeBot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Claude-SearchBot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Claude-User
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: DuckAssistBot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: FacebookBot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Googlebot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Google-CloudVertexBot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: GPTBot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: meta-externalagent
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: meta-externalfetcher
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: MistralAI-User
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: OAI-SearchBot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: PerplexityBot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Perplexity-User
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: PetalBot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: ProRataInc
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Timpibot
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Manus-User
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Terracotta
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: CloudflareBrowserRenderingCrawler
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: TikTokSpider
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+User-agent: Arquivo-web-crawler
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+# ----------------------------------------------------
+# 2. General Search Engine Crawlers
+# ----------------------------------------------------
+
+User-agent: *
+Disallow: /admin
+Disallow: /api
+Allow: /
+
+# Sitemap Location
+Sitemap: https://janakpurinn.com/sitemap.xml

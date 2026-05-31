@@ -80,7 +80,7 @@ const VideoPlayer = ({
         </svg>
       </div>
 
-      <div className="relative z-10 flex items-center min-h-screen p-6 sm:p-10">
+      <div className="relative z-10 flex items-center min-h-screen pt-28 pb-12 px-6 sm:px-10 lg:py-0">
         <div className="w-full max-w-7xl mx-auto">
           <motion.div 
             variants={container}

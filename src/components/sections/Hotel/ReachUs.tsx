@@ -70,16 +70,16 @@ const FindUs: React.FC = () => {
             variants={item}
             className="mithila-card group !p-2 overflow-hidden shadow-2xl active:rotate-1 transition-all duration-500"
           >
-            <div className="relative aspect-[4/3] lg:h-full">
+            <div className="relative aspect-[16/9] sm:aspect-[4/3] lg:h-full w-full">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3563.22171847403!2d85.91668091131955!3d26.737299867509265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ec4169194bb6bd%3A0xc733976a1e32e236!2sHotel%20JanakpurInn!5e0!3m2!1sen!2snp!4v1748835156128!5m2!1sen!2snp"
                 width="100%"
                 height="100%"
-                style={{ border: 0, minHeight: '450px' }}
+                style={{ border: 0 }}
                 allowFullScreen={true}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="rounded-sm transition-all duration-700"
+                className="rounded-sm transition-all duration-700 min-h-[250px] sm:min-h-[450px]"
               ></iframe>
               <div className="absolute inset-0 pointer-events-none border-[12px] border-white/10" />
             </div>
