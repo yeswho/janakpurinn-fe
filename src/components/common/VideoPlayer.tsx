@@ -94,14 +94,7 @@ const VideoPlayer = ({
               className="lg:col-span-7 space-y-10"
             >
               <div className="space-y-6">
-                <motion.div 
-                  variants={item}
-                  className="inline-block"
-                >
-                  <span className="text-white/60 text-[10px] font-bold tracking-[0.5em] uppercase border-b border-white/20 pb-2">
-                    Est. 2022 • Janakpur Dham
-                  </span>
-                </motion.div>
+
 
                 <motion.h1 
                   variants={item}
@@ -190,7 +183,7 @@ const VideoPlayer = ({
                   {/* Seasonal Curated Rewards */}
                   <div className="mt-12 text-center opacity-40 group-active:opacity-80 transition-opacity">
                     <p className="text-white text-[9px] tracking-[0.3em] uppercase italic">
-                      Third Anniversary Collection
+                      Fourth Anniversary Collection
                     </p>
                   </div>
                 </div>
