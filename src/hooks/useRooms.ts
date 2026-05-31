@@ -17,7 +17,7 @@ export interface RoomType {
 const hardcodedRooms: RoomType[] = [
   {
     id: 'apt-001',
-    title: 'Double bed Luxery Apartment with A/C',
+    title: 'Double bed Luxury Apartment with A/C',
     category: 'Apartment',
     description: 'Spacious apartment with a luxurious room with double bed, flat screen tv, sofa, tea table, attached washroom, wooden cabinets, kitchen and kitchenwares with views of Ramanand Chowk.',
     price: 4500,

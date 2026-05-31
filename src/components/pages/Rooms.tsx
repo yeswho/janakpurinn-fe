@@ -19,7 +19,7 @@ const roomsSchema = {
       },
       "itemOffered": {
         "@type": "HotelRoom",
-        "name": "Double bed Luxery Apartment with A/C",
+        "name": "Double bed Luxury Apartment with A/C",
         "description": "Spacious apartment with a luxurious room with double bed, flat screen tv, sofa, tea table, attached washroom, wooden cabinets, kitchen and kitchenwares.",
         "bed": {
           "@type": "BedDetails",

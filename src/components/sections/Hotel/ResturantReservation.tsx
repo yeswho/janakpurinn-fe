@@ -20,21 +20,52 @@ const RestaurantReservation: React.FC<RestaurantReservationProps> = ({ isOpen, o
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
     
-    setTimeout(() => {
-      console.log('Reservation submitted:', formData);
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'restaurant',
+          ...formData
+        }),
+      });
+
+      if (!response.ok) {
+        let errorMsg = 'Failed to request reservation. Please try again.';
+        try {
+          const errorData = await response.json();
+          errorMsg = errorData.error || errorMsg;
+        } catch (e) {
+          if (response.status === 404) {
+            errorMsg = 'API endpoint not found (404). If running locally, please start your server using "vercel dev" instead of "npm run dev".';
+          }
+        }
+        throw new Error(errorMsg);
+      }
+
+      await response.json();
+
       setSubmitSuccess(true);
-    }, 1500);
+    } catch (err: any) {
+      console.error('Restaurant reservation submission error:', err);
+      setSubmitError(err.message || 'Something went wrong. Please check your network and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -208,6 +239,12 @@ const RestaurantReservation: React.FC<RestaurantReservationProps> = ({ isOpen, o
                   />
                 </div>
               </div>
+
+              {submitError && (
+                <div className="mt-4 p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg text-sm">
+                  {submitError}
+                </div>
+              )}
 
               <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-end gap-3">
                 <button

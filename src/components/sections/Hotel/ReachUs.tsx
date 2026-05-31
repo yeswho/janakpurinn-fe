@@ -118,9 +118,9 @@ const FindUs: React.FC = () => {
                   <div className="ml-6">
                     <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-accent-400 mb-2">Voice of Hospitality</h3>
                     <div className="text-lg font-serif text-text-primary leading-relaxed">
+                      <a href="tel:+9779810685891" className="hover:text-accent-500 transition-colors">+977 9810685891</a><br />
                       <a href="tel:+97741591317" className="hover:text-accent-500 transition-colors">+977 41-591317</a><br />
                       <a href="tel:+9779765263291" className="hover:text-accent-500 transition-colors">+977 9765263291</a><br />
-                      <a href="tel:+9779810685891" className="hover:text-accent-500 transition-colors">+977 9810685891</a><br />
                       <a href="tel:+9779840149464" className="hover:text-accent-500 transition-colors">+977 9840149464</a>
                     </div>
                   </div>

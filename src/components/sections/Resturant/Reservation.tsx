@@ -9,7 +9,7 @@ const Reservation = () => {
   const restaurantData = {
     name: "Hotel Restaurant",
     description: "We are pleased to offer our restaurant services to in-house guests of the hotel. To ensure the best possible dining experience for all guests, we require that any outside guests who wish to dine at the restaurant must make a reservation in advance of their visit. This allows us to accommodate everyone who wishes to enjoy our food and provides a more pleasant experience for all guests. We thank you for your understanding and look forward to welcoming you to the restaurant.",
-    contact: "+977 41-591317",
+    contact: "+977 9810685891",
     note: "Note: Reservation is only necessary for the guests who are NOT staying in the hotel.",
     hours: {
       breakfast: "7:00 AM - 11:00 AM",

@@ -13,6 +13,7 @@ const ContactUs = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -22,13 +23,38 @@ const ContactUs = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
     
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'contact',
+          ...formData
+        }),
+      });
+
+      if (!response.ok) {
+        let errorMsg = 'Failed to send message. Please try again.';
+        try {
+          const errorData = await response.json();
+          errorMsg = errorData.error || errorMsg;
+        } catch (e) {
+          if (response.status === 404) {
+            errorMsg = 'API endpoint not found (404). If running locally, please start your server using "vercel dev" instead of "npm run dev".';
+          }
+        }
+        throw new Error(errorMsg);
+      }
+
+      await response.json();
+
       setSubmitSuccess(true);
       setFormData({
         name: '',
@@ -37,7 +63,12 @@ const ContactUs = () => {
         subject: '',
         message: ''
       });
-    }, 1500);
+    } catch (err: any) {
+      console.error('Contact form submission error:', err);
+      setSubmitError(err.message || 'Something went wrong. Please check your network and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = {
@@ -47,10 +78,10 @@ const ContactUs = () => {
       country: "Nepal"
     },
     phones: [
+      "+977 9810685891",
       "+977 41-591317",
       "+977 41-591989",
       "+977 9765263291",
-      "+977 9810685891",
       "+977 9840149464"
     ],
     email: "janakpurinnhna2079@gmail.com"
@@ -355,6 +386,12 @@ const ContactUs = () => {
                     className="w-full px-4 py-2 bg-white/80 border border-gray-200/50 rounded-lg text-sm sm:text-base"
                   ></textarea>
                 </div>
+
+                {submitError && (
+                  <div className="p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg text-sm sm:text-base">
+                    {submitError}
+                  </div>
+                )}
 
                 <div className="flex justify-end">
                   <button

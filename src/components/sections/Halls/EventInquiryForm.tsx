@@ -10,16 +10,50 @@ export default function EventInquiryForm({ hallName }: { hallName: string }) {
     eventType: 'Corporate Meeting'
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(`Inquiry for ${hallName}:`, formData);
-    setSubmitted(true);
-    // Reset after 3 seconds
-    setTimeout(() => {
-      setSubmitted(false);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'hall',
+          hallName,
+          ...formData
+        }),
+      });
+
+      if (!response.ok) {
+        let errorMsg = 'Failed to submit inquiry. Please try again.';
+        try {
+          const errorData = await response.json();
+          errorMsg = errorData.error || errorMsg;
+        } catch (e) {
+          if (response.status === 404) {
+            errorMsg = 'API endpoint not found (404). If running locally, please start your server using "vercel dev" instead of "npm run dev".';
+          }
+        }
+        throw new Error(errorMsg);
+      }
+
+      await response.json();
+
+      setSubmitted(true);
       setFormData({ name: '', phone: '', email: '', date: '', guests: '', eventType: 'Corporate Meeting' });
-    }, 3000);
+    } catch (err: any) {
+      console.error('Event inquiry submission error:', err);
+      setSubmitError(err.message || 'Something went wrong. Please check your network and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -73,8 +107,28 @@ export default function EventInquiryForm({ hallName }: { hallName: string }) {
         </div>
       </div>
       
-      <button type="submit" className="w-full btn-mithila">
-        Submit Inquiry
+      {submitError && (
+        <div className="mb-4 p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg text-sm">
+          {submitError}
+        </div>
+      )}
+      
+      <button 
+        type="submit" 
+        disabled={isSubmitting}
+        className="w-full btn-mithila disabled:opacity-75 flex items-center justify-center"
+      >
+        {isSubmitting ? (
+          <>
+            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Submitting...
+          </>
+        ) : (
+          'Submit Inquiry'
+        )}
       </button>
     </form>
   );

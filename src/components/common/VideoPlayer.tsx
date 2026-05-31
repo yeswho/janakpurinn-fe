@@ -156,8 +156,8 @@ const VideoPlayer = ({
                     </div>
                     
                     <motion.div className="flex flex-col items-center gap-2 text-white/90 text-[10px] tracking-[0.2em] uppercase font-medium">
-                      <a href="tel:+9779765263291" className="hover:text-accent-300 transition-colors">+977 9765263291</a>
                       <a href="tel:+9779810685891" className="hover:text-accent-300 transition-colors">+977 9810685891</a>
+                      <a href="tel:+9779765263291" className="hover:text-accent-300 transition-colors">+977 9765263291</a>
                       <a href="tel:+9779840149464" className="hover:text-accent-300 transition-colors">+977 9840149464</a>
                     </motion.div>
                     

@@ -64,17 +64,17 @@ export default function Footer() {
                 <FaMapMarkerAlt className="h-5 w-5 mt-0.5 text-accent-400 flex-shrink-0" />
                 <span className="ml-4 text-sm text-text-secondary leading-relaxed">Ramanand Chowk, JanakpurDham-08, Dhanusha, Nepal</span>
               </li>
-              <li className="flex items-center">
-                <FaPhone className="h-5 w-5 text-accent-400 flex-shrink-0" />
-                <a href="tel:+97741591317" className="ml-4 text-sm text-text-secondary hover:text-accent-500 transition-colors">Tel: +977 41-591317</a>
-              </li>
               <li className="flex items-start">
                 <FaMobile className="h-5 w-5 mt-0.5 text-accent-400 flex-shrink-0" />
                 <div className="ml-4 flex flex-col space-y-1 text-sm text-text-secondary">
-                  <a href="tel:+9779765263291" className="hover:text-accent-500 transition-colors">Mob: +977 9765263291</a>
                   <a href="tel:+9779810685891" className="hover:text-accent-500 transition-colors">Mob: +977 9810685891</a>
+                  <a href="tel:+9779765263291" className="hover:text-accent-500 transition-colors">Mob: +977 9765263291</a>
                   <a href="tel:+9779840149464" className="hover:text-accent-500 transition-colors">Mob: +977 9840149464</a>
                 </div>
+              </li>
+              <li className="flex items-center">
+                <FaPhone className="h-5 w-5 text-accent-400 flex-shrink-0" />
+                <a href="tel:+97741591317" className="ml-4 text-sm text-text-secondary hover:text-accent-500 transition-colors">Tel: +977 41-591317</a>
               </li>
               <li className="flex items-center">
                 <FaEnvelope className="h-5 w-5 text-accent-400 flex-shrink-0" />
