@@ -165,10 +165,25 @@ const BookingPage = () => {
 
     const filteredRooms = roomData?.filter(room => room.availableRooms > 0) || [];
 
+    const calculateNights = (): number => {
+        if (!formData.checkIn || !formData.checkOut) return 1;
+        const checkInDate = new Date(formData.checkIn);
+        const checkOutDate = new Date(formData.checkOut);
+        
+        checkInDate.setHours(0, 0, 0, 0);
+        checkOutDate.setHours(0, 0, 0, 0);
+        
+        const diffTime = checkOutDate.getTime() - checkInDate.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        return diffDays > 0 ? diffDays : 1;
+    };
+
     const calculateTotal = () => {
+        const nights = calculateNights();
         return selectedRooms.reduce((total, item) => {
             const room = roomData?.find(r => r.id === item.id);
-            return total + (room ? room.price * item.quantity : 0);
+            return total + (room ? room.price * item.quantity * nights : 0);
         }, 0);
     };
 
@@ -397,10 +412,11 @@ const BookingPage = () => {
                                     {selectedRooms.map(item => {
                                         const room = roomData?.find(r => r.id === item.id);
                                         if (!room) return null;
+                                        const nights = calculateNights();
                                         return (
                                             <div key={item.id} className="flex justify-between text-sm">
-                                                <span>{item.quantity}x {room.title}</span>
-                                                <span>NPR {room.price * item.quantity}</span>
+                                                <span>{item.quantity}x {room.title} ({nights} {nights === 1 ? 'night' : 'nights'})</span>
+                                                <span>NPR {room.price * item.quantity * nights}</span>
                                             </div>
                                         );
                                     })}

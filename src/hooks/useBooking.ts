@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import config from '../config';
-import type { RoomType } from './useRooms';
+import { hardcodedRooms } from './useRooms';
 
 export interface BookingType {
   id: number;
@@ -51,36 +51,69 @@ const createBooking = async (bookingData: BookingPayload): Promise<{
   bookingReference: string;
   bookingId: number;
 }> => {
-  const roomIds = bookingData.rooms.map(room => room.id).join(',');
-  const roomsResponse = await fetch(`${config.apiBaseUrl}/rooms?ids=${roomIds}`);
-  
-  if (!roomsResponse.ok) {
-    throw new Error('Failed to fetch room prices');
-  }
+  const checkInDate = new Date(bookingData.checkIn);
+  const checkOutDate = new Date(bookingData.checkOut);
+  checkInDate.setHours(0, 0, 0, 0);
+  checkOutDate.setHours(0, 0, 0, 0);
+  const diffTime = checkOutDate.getTime() - checkInDate.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const nights = diffDays > 0 ? diffDays : 1;
 
-  const rooms: RoomType[] = await roomsResponse.json();
   const calculatedTotal = bookingData.rooms.reduce((sum, room) => {
-    const roomInfo = rooms.find((r) => r.id === room.id);
-    return sum + (roomInfo?.price || 0) * room.quantity;
+    const roomInfo = hardcodedRooms.find((r) => r.id === room.id);
+    return sum + (roomInfo?.price || 0) * room.quantity * nights;
   }, 0);
 
-  const bookingResponse = await fetch(`${config.apiBaseUrl}/booking`, {
+  const roomsFormatted = bookingData.rooms
+    .map(room => {
+      const roomInfo = hardcodedRooms.find(r => r.id === room.id);
+      return `${room.quantity}x ${roomInfo?.title || 'Unknown Room'} (NPR ${roomInfo?.price || 0}/night)`;
+    })
+    .join('\n');
+
+  const bookingReference = `JPI-${Date.now().toString().slice(-6)}`;
+
+  const bookingResponse = await fetch('/api/send-email', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      ...bookingData,
+      type: 'booking',
+      firstName: bookingData.firstName,
+      lastName: bookingData.lastName,
+      name: `${bookingData.firstName} ${bookingData.lastName}`,
+      email: bookingData.email,
+      phone: bookingData.phone,
+      bookingReference,
+      nights,
+      roomsFormatted,
+      checkIn: bookingData.checkIn,
+      checkOut: bookingData.checkOut,
+      paymentMethod: bookingData.paymentMethod,
+      specialRequests: bookingData.specialRequests,
       total: calculatedTotal
     }),
   });
 
   if (!bookingResponse.ok) {
-    const errorData = await bookingResponse.json();
-    throw new Error(errorData.error || 'Booking creation failed');
+    let errorMsg = 'Booking creation failed. Please try again.';
+    try {
+      const errorData = await bookingResponse.json();
+      errorMsg = errorData.error || errorMsg;
+    } catch (e) {
+      if (bookingResponse.status === 404) {
+        errorMsg = 'API endpoint not found (404). If running locally, please start your server using "vercel dev" instead of "npm run dev".';
+      }
+    }
+    throw new Error(errorMsg);
   }
 
-  return bookingResponse.json();
+  return {
+    success: true,
+    bookingReference,
+    bookingId: Date.now()
+  };
 };
 
 export const useBookings = () => {

@@ -221,6 +221,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         ${generateRow('Estimated Guests', payload.guests)}
         ${generateRow('Event Type', payload.eventType)}
       `;
+    } else if (type === 'booking') {
+      formTitle = 'Room Booking';
+      emailSubject = `[Room Booking] ${name} (${payload.checkIn} to ${payload.checkOut})`;
+      const roomsHtml = (payload.roomsFormatted || '').replace(/\n/g, '<br/>');
+      detailsHtml = `
+        ${generateRow('Submission Type', 'Room Stay Booking')}
+        ${generateRow('Booking Ref', payload.bookingReference)}
+        ${generateRow('Guest Name', name)}
+        ${generateRow('Email Address', email)}
+        ${generateRow('Phone Number', phone)}
+        ${generateRow('Check-In Date', payload.checkIn)}
+        ${generateRow('Check-Out Date', payload.checkOut)}
+        ${generateRow('Nights Count', payload.nights)}
+        ${generateRow('Rooms Booked', roomsHtml)}
+        ${generateRow('Payment Method', payload.paymentMethod)}
+        ${generateRow('Special Requests', payload.specialRequests)}
+        ${generateRow('Total Cost', `NPR ${payload.total}`)}
+      `;
     } else {
       return res.status(400).json({ error: 'Invalid inquiry type' });
     }

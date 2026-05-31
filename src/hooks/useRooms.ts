@@ -14,7 +14,7 @@ export interface RoomType {
   availableRooms: number;
 }
 
-const hardcodedRooms: RoomType[] = [
+export const hardcodedRooms: RoomType[] = [
   {
     id: 'apt-001',
     title: 'Double bed Luxury Apartment with A/C',
