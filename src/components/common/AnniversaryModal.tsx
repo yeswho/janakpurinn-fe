@@ -14,7 +14,7 @@ import { X } from 'lucide-react';
  */
 
 // Offer runs for one month from the 4th anniversary launch.
-const OFFER_END = new Date('2026-07-23T23:59:59');
+const OFFER_END = new Date('2026-07-24T23:59:59');
 const SESSION_KEY = 'ji-anniversary-modal-seen';
 
 export default function AnniversaryModal() {
@@ -143,7 +143,7 @@ export default function AnniversaryModal() {
               </div>
 
               <p className="mt-6 text-xs tracking-wide text-text-secondary">
-                Offer valid through <span className="font-medium text-text-primary">23 July 2026</span>
+                Offer valid through <span className="font-medium text-text-primary">24 July 2026</span>
               </p>
 
               {/* CTA */}
