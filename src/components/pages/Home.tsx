@@ -12,10 +12,12 @@ import SisterCompany from '../sections/Hotel/SisterCompany';
 // Added imports
 import SEOWrapper from '../common/SEOWrapper';
 import { defaultHotelSchema } from '../../config/seo';
+import AnniversaryModal from '../common/AnniversaryModal';
 
 export default function Home() {
   return (
     <SEOWrapper schema={defaultHotelSchema}>
+      <AnniversaryModal />
       <div className="w-full -mt-20 lg:-mt-24">
         <VideoPlayer embedId="hdfmg7 79g0gh" className="h-full w-full" />
         <div className="mithila-divider" />
